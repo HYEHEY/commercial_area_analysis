@@ -53,7 +53,7 @@ class MainPage(QWidget):
 
         elif idx == 4:
             print("hello")
-
+das
             # self.comboBox.clear()
             # self.title_lbl.setText("대전 관광지 내 입지 추천")
             # self.comboBox.addItem("전체")
