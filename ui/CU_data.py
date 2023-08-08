@@ -22,12 +22,21 @@ class DataPage(QDialog):
         self.back_btn_3.clicked.connect(self.show_infra)
 
     def create_example_plot(self):
-        x = [1, 2, 3, 4, 5]
-        y = [10, 6, 8, 4, 7]
+        # test
+        # x = [2018, 2019, 2020, 2021, 2022]
+        # y = [204595, 261926, 332034, 319947, 255660]
+        #
+        # plt.plot(x, y)
+        # plt.title('유동인구 그래프')
+        # plt.tight_layout()
 
-        plt.plot(x, y)
-        plt.title('유동인구 그래프')
-        plt.tight_layout()
+        import pandas as pd
+        df1 = pd.DataFrame({'x':[2018, 2019, 2020, 2021, 2022], 'y':[204595, 261926, 332034, 319947, 255660]})
+        plt.plot(df1['x'],df1['y'], color='blue', linestyle='-',marker='o')
+
+        plt.xlim(2017, 2023)
+        plt.ylim(200000, 340000)
+        plt.title("유동인구 그래프")
 
     def create_donut_chart(self):
         sizes = [10, 6, 8, 4, 7]  # 투두리스트 갯수가 들어가야 함.
