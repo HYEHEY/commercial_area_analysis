@@ -601,9 +601,27 @@ border-width: 2px;
      <rect>
       <x>130</x>
       <y>200</y>
-      <width>461</width>
-      <height>481</height>
+      <width>460</width>
+      <height>480</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>460</width>
+      <height>480</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>460</width>
+      <height>480</height>
+     </size>
     </property>
     <property name="styleSheet">
      <string notr="true">border-color: rgb(101, 45, 142);
@@ -611,6 +629,11 @@ border-style:solid;
 border-width:3px;
 </string>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+     </item>
+    </layout>
    </widget>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
@@ -704,30 +727,32 @@ border-color: rgb(101, 45, 142);</string>
      <string notr="true">border-color: rgb(101, 45, 142);
 color: rgb(57, 57, 57);
 border-style: solid;
-border-width:2px;
+border-width: 3px;
 </string>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox_2">
     <property name="geometry">
      <rect>
-      <x>325</x>
+      <x>340</x>
       <y>150</y>
-      <width>131</width>
+      <width>151</width>
       <height>33</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-color: rgb(101, 45, 142);
+color: rgb(57, 57, 57);
 border-style: solid;
-border-width:2px;
+border-width: 3px;
+
 </string>
     </property>
    </widget>
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>479</x>
+      <x>860</x>
       <y>150</y>
       <width>111</width>
       <height>34</height>

@@ -26,10 +26,7 @@ class DataPage(QDialog):
         y = [10, 6, 8, 4, 7]
 
         plt.plot(x, y)
-        # plt.xlabel('X-축')
-        # plt.ylabel('Y-축')
         plt.title('유동인구 그래프')
-        # plt.grid(True)
         plt.tight_layout()
 
     def create_donut_chart(self):
@@ -62,6 +59,7 @@ class DataPage(QDialog):
         self.create_example_plot() # 막대 선그래프
 
     def show_infra(self):
+        """주변 인프라 출력 함수"""
         self.clear_layout(self.verticalLayout)
         canvas = FigureCanvas(plt.figure())
         self.verticalLayout.addWidget(canvas)
@@ -75,7 +73,6 @@ class DataPage(QDialog):
         self.move(590, 241)
         self.back_btn_2.setChecked(True)
         self.show_population()
-
 
     def clear_layout(self, layout: QLayout):
         """레이아웃 안의 모든 객체를 지웁니다."""
