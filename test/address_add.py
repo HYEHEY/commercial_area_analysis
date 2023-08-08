@@ -45,3 +45,4 @@ for i in df_var:
             print(f"위도 : {lat}\n경도 : {lng}")
 
             con.commit()
+
