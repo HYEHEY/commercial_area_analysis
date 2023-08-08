@@ -608,7 +608,7 @@ border-width: 2px;
     <property name="styleSheet">
      <string notr="true">border-color: rgb(101, 45, 142);
 border-style:solid;
-border-width:2px;
+border-width:3px;
 </string>
     </property>
    </widget>
@@ -634,7 +634,7 @@ border-width:2px;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-width: 1px;
+     <string notr="true">border-width: 3px;
 border-style: solid;
 border-color: rgb(101, 45, 142);</string>
     </property>
@@ -646,9 +646,12 @@ border-color: rgb(101, 45, 142);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>358</width>
-       <height>438</height>
+       <width>354</width>
+       <height>434</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-color: rgb(255, 255, 255);</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
@@ -699,6 +702,7 @@ border-color: rgb(101, 45, 142);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">border-color: rgb(101, 45, 142);
+color: rgb(57, 57, 57);
 border-style: solid;
 border-width:2px;
 </string>
@@ -720,7 +724,7 @@ border-width:2px;
 </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_18">
+   <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
       <x>479</x>
@@ -764,7 +768,7 @@ border-radius: 10px;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-width: 2px;
+     <string notr="true">border-width: 3px;
 border-style: solid;
 border-color: rgb(101, 45, 142);
 border-bottom-color: rgb(255, 255, 255);
@@ -773,10 +777,10 @@ border-bottom-color: rgb(255, 255, 255);
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>2</x>
-       <y>2</y>
-       <width>356</width>
-       <height>38</height>
+       <x>3</x>
+       <y>3</y>
+       <width>354</width>
+       <height>37</height>
       </rect>
      </property>
      <property name="font">

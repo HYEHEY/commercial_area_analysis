@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
 
+from ui.CU_data import DataPage
+
 
 class MainPage(QWidget):
     def __init__(self):
@@ -25,6 +27,7 @@ class MainPage(QWidget):
                            self.btn_16,self.btn_17]
         for idx, btn in enumerate(region_btn_list):
             btn.clicked.connect(lambda x=None, y=idx: self.region_info(y))
+        self.search_btn.clicked.connect(self.go_data_page)
 
     def set_text(self, region, t1, t2, t3, t4, t5):
         """지역 정보 텍스트 변경 이벤트 함수"""
@@ -76,6 +79,11 @@ class MainPage(QWidget):
             self.set_text("충북", "현대백화점 충청점", "오창 호수공원", "단양 구경시장", "청풍호반 케이블카", "롯데아울렛 청주점")
         elif idx == 16:
             self.set_text("제주", "동문재래시장", "서귀포 매일 올레시장", "성산일출봉", "함덕 해수욕장", "곽지 해수욕장")
+
+    def go_data_page(self):
+        """데이터 페이지 출력 함수"""
+        data = DataPage()
+        data.exec_()
 
 
 if __name__ == '__main__':
