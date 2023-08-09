@@ -27,7 +27,7 @@ class DataPage(QDialog):
         plt.plot(df1['x'], df1['y'], color='blue', linestyle='-',marker='o')
 
         plt.xlim(2017, 2023)
-        plt.ylim(150000, 400000)
+        # plt.ylim(150000, 400000)
         plt.xlabel('년도')
         plt.ylabel('관광객 수(명)')
         plt.title("유동인구 그래프")
@@ -71,7 +71,7 @@ class DataPage(QDialog):
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         self.move(590, 241)
         self.back_btn_2.setChecked(True)
         self.show_population()

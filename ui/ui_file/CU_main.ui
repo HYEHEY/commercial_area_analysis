@@ -601,7 +601,7 @@ border-width: 2px;
      <rect>
       <x>130</x>
       <y>200</y>
-      <width>460</width>
+      <width>470</width>
       <height>480</height>
      </rect>
     </property>
@@ -613,13 +613,13 @@ border-width: 2px;
     </property>
     <property name="minimumSize">
      <size>
-      <width>460</width>
+      <width>470</width>
       <height>480</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>460</width>
+      <width>470</width>
       <height>480</height>
      </size>
     </property>
@@ -630,8 +630,44 @@ border-width:3px;
 </string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+      <widget class="QWidget" name="widget_5" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="spacing">
+         <number>3</number>
+        </property>
+        <property name="leftMargin">
+         <number>3</number>
+        </property>
+        <property name="topMargin">
+         <number>3</number>
+        </property>
+        <property name="rightMargin">
+         <number>3</number>
+        </property>
+        <property name="bottomMargin">
+         <number>2</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2"/>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </widget>

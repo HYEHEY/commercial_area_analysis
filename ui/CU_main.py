@@ -6,6 +6,8 @@ from PyQt5.QtCore import Qt
 
 from ui.CU_data import DataPage
 from ui.CU_forsale_list import ForSaleList
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
+from PyQt5.QtCore import QUrl
 
 
 class MainPage(QWidget):
@@ -16,6 +18,13 @@ class MainPage(QWidget):
         self.btn_event()
         self.combox_event()
         self.lbl_event()
+        self.kakao_map()
+
+    def kakao_map(self):
+        """카카오 맵 API 출력 이벤트 함수"""
+        self.webEngineView = QWebEngineView()
+        self.webEngineView.load(QUrl("http://localhost/kmap/kakaomap.html"))
+        self.verticalLayout_2.addWidget(self.webEngineView)
 
     def combox_event(self):
         """콤보박스 텍스트 체인지 이벤트"""
@@ -35,7 +44,7 @@ class MainPage(QWidget):
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
-        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.FramelessWindowHint)
         self.btn_1.setChecked(True)
         self.set_text("서울", "현대백화점 압구정본점", "신세계백화점 강남점", "타임스퀘어", "코엑스", "롯데몰 김포공항점")
 
