@@ -1,8 +1,14 @@
 import sys
 
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget, QApplication, QSpacerItem, QSizePolicy
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
+
+from ui.CU_data import DataPage
+from ui.CU_forsale_list import ForSaleList
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtCore import QUrl
+from map_localesearcher import *
 
 
 class MainPage(QWidget):
@@ -11,10 +17,31 @@ class MainPage(QWidget):
         loadUi('./ui_file/CU_main.ui', self)
         self.window_option()
         self.btn_event()
+        self.combox_event()
+        self.lbl_event()
+        self.kakao_map()
+
+    def kakao_map(self):
+        """카카오 맵 API 출력 이벤트 함수"""
+        self.webEngineView = QWebEngineView()
+        self.webEngineView.load(QUrl("http://localhost/kmap/kakaomap.html"))
+        self.verticalLayout_2.addWidget(self.webEngineView)
+
+    def combox_event(self):
+        """콤보박스 텍스트 체인지 이벤트"""
+        self.comboBox.currentTextChanged.connect(self.map_search)
+
+    def lbl_event(self):
+        """라벨 클릭 이벤트 함수"""
+        self.label_3.mousePressEvent = lambda x: self.close_event(None)
+
+    def close_event(self, e):
+        """프로그램 종료 함수"""
+        self.close()
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
-        # self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.FramelessWindowHint)
         self.btn_1.setChecked(True)
         self.set_text("서울", "현대백화점 압구정본점", "신세계백화점 강남점", "타임스퀘어", "코엑스", "롯데몰 김포공항점")
 
@@ -25,6 +52,7 @@ class MainPage(QWidget):
                            self.btn_16,self.btn_17]
         for idx, btn in enumerate(region_btn_list):
             btn.clicked.connect(lambda x=None, y=idx: self.region_info(y))
+        self.search_btn.clicked.connect(self.add_forsale_list)
 
     def set_text(self, region, t1, t2, t3, t4, t5):
         """지역 정보 텍스트 변경 이벤트 함수"""
@@ -41,159 +69,84 @@ class MainPage(QWidget):
         """지역 정보 함수"""
         if idx == 0:
             self.set_text("서울", "현대백화점 압구정본점", "신세계백화점 강남점", "타임스퀘어", "코엑스", "롯데몰 김포공항점")
-
         elif idx == 1:
             self.set_text("경기", "스타필드 하남점", "스타필드 고양점", "현대백화점 판교점", "애버랜드", "현대프리미엄아울렛 김포점")
-
         elif idx == 2:
             self.set_text("인천", "현대프로미엄아울렛 송도점", "롯데백화점 인천점", "소래포구 종합어시장", "인천 종합어시장", "소래포구")
-
         elif idx == 3:
             self.set_text("세종", "세종 호수공원", "CGV 세종점", "세종 전통시장", "금강보행교", "메가박스 세종나성점")
-
         elif idx == 4:
-            print("hello")
-das
-            # self.comboBox.clear()
-            # self.title_lbl.setText("대전 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("갤러리아백화점 타임월드점")
-            # self.comboBox.addItem("롯데백화점 대전점")
-            # self.comboBox.addItem("현대프리미엄아울렛 대전점")
-            # self.comboBox.addItem("오정농수산물 도매시장")
-            # self.comboBox.addItem("대전 월드컵경기장")
+            self.set_text("대전", "갤러리아백화점 타임월드점", "롯데백화점 대전점", "현대프리미엄아울렛 대전점", "오정농수산물 도매시장",
+                          "대전 월드컵경기장")
         elif idx == 5:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("대구 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("신세계백화점 대구점")
-            # self.comboBox.addItem("서문시장")
-            # self.comboBox.addItem("현대백화점 대구점")
-            # self.comboBox.addItem("수성못")
-            # self.comboBox.addItem("EXCO서관")
+            self.set_text("대구", "신세계백화점 대구점", "서문시장", "현대백화점 대구점", "수성못", "EXCO서관")
         elif idx == 6:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("부산 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("신세계백화점 센텀시티점")
-            # self.comboBox.addItem("롯데백화점 부산본점")
-            # self.comboBox.addItem("롯데프리미엄아울렛 동부산점")
-            # self.comboBox.addItem("해운대 해수욕장")
-            # self.comboBox.addItem("광안리 해수욕장")
+            self.set_text("부산", "신세계백화점 센텀시티점", "롯데백화점 부산본점", "롯데프리미엄아울렛 동부산점",
+                          "해운대 해수욕장", "광안리 해수욕장")
         elif idx == 7:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("울산 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("현대백화점 울산점")
-            # self.comboBox.addItem("진하 해수욕장")
-            # self.comboBox.addItem("일산 해수욕장")
-            # self.comboBox.addItem("태화강 국가정원")
-            # self.comboBox.addItem("업스퀘어")
+            self.set_text("울산", "현대백화점 울산점", "진하 해수욕장", "일산 해수욕장", "태화강 국가정원", "업스퀘어")
         elif idx == 8:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("광주 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("신세계백화점 광주점")
-            # self.comboBox.addItem("롯데백화점 광주점")
-            # self.comboBox.addItem("김대중 컨벤션센터")
-            # self.comboBox.addItem("메가박스 광주하남점")
-            # self.comboBox.addItem("롯데아울렛 광주수완점")
+            self.set_text("광주", "신세계백화점 광주점", "롯데백화점 광주점", "김대중 컨벤션센터", "메가박스 광주하남점",
+                          "롯데아울렛 광주수완점")
         elif idx == 9:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("강원 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("속초 관광수산시장")
-            # self.comboBox.addItem("속초 해수욕장")
-            # self.comboBox.addItem("안목해변")
-            # self.comboBox.addItem("강릉 중앙시장")
-            # self.comboBox.addItem("주문진항")
+            self.set_text("강원", "속초 관광수산시장", "속초 해수욕장", "안목해변", "강릉 중앙시장", "주문진항")
         elif idx == 10:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("경남 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("롯데백화점 창원점")
-            # self.comboBox.addItem("창원 컨벤션센터")
-            # self.comboBox.addItem("독일마을")
-            # self.comboBox.addItem("통도사")
-            # self.comboBox.addItem("진주 중앙시장")
+            self.set_text("경남", "롯데백화점 창원점", "창원 컨벤션센터", "독일마을", "통도사", "진주 중앙시장")
         elif idx == 11:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("경북 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("죽도시장")
-            # self.comboBox.addItem("첨성대")
-            # self.comboBox.addItem("영일대 해수욕장")
-            # self.comboBox.addItem("롯데백화점 포항점")
-            # self.comboBox.addItem("보문관광단지")
+            self.set_text("경북", "죽도시장", "첨성대", "영일대 해수욕장", "롯데백화점 포항점", "보문관광단지")
         elif idx == 12:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("전남 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("이순신 광장")
-            # self.comboBox.addItem("죽녹원")
-            # self.comboBox.addItem("오동도")
-            # self.comboBox.addItem("항일암")
-            # self.comboBox.addItem("여수 해상케이블카 놀아정류장")
+            self.set_text("전남", "이순신 광장", "죽녹원", "오동도", "항일암", "여수 해상케이블카 놀아정류장")
         elif idx == 13:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("전북 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("전주 한옥마을")
-            # self.comboBox.addItem("롯데몰 군산점")
-            # self.comboBox.addItem("전주 월드컵경기장")
-            # self.comboBox.addItem("롯데백화점 전주점")
-            # self.comboBox.addItem("전주 동물원")
+            self.set_text("전북", "전주 한옥마을", "롯데몰 군산점", "전주 월드컵경기장", "롯데백화점 전주점", "전주 동물원")
         elif idx == 14:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("충남 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("삽교호 관광지")
-            # self.comboBox.addItem("신세계백화점 천안아산점")
-            # self.comboBox.addItem("독립기념관")
-            # self.comboBox.addItem("예당호 출렁다리")
-            # self.comboBox.addItem("코스트코홀세일 천안점")
+            self.set_text("충남", "삽교호 관광지", "신세계백화점 천안아산점", "독립기념관", "예당호 출렁다리", "갤러리아백화점 센터시티점")
         elif idx == 15:
-            print("hello")
-
-            # self.comboBox.clear()
-            # self.title_lbl.setText("충북 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("현대백화점 충청점")
-            # self.comboBox.addItem("오창 호수공원")
-            # self.comboBox.addItem("단양 구경시장")
-            # self.comboBox.addItem("청풍호반 케이블카")
-            # self.comboBox.addItem("롯데아울렛 청주점")
+            self.set_text("충북", "현대백화점 충청점", "오창 호수공원", "단양 구경시장", "청풍호반 케이블카", "롯데아울렛 청주점")
         elif idx == 16:
-            print("hello")
+            self.set_text("제주", "동문재래시장", "서귀포 매일 올레시장", "성산일출봉", "함덕 해수욕장", "곽지 해수욕장")
 
-            # self.comboBox.clear()
-            # self.title_lbl.setText("제주 관광지 내 입지 추천")
-            # self.comboBox.addItem("전체")
-            # self.comboBox.addItem("동문재래시장")
-            # self.comboBox.addItem("서귀포 매일 올레시장")
-            # self.comboBox.addItem("성산일출봉")
-            # self.comboBox.addItem("함덕 해수욕장")
-            # self.comboBox.addItem("곽지 해수욕장")
+    def go_data_page(self, e):
+        """데이터 페이지 출력 함수"""
+        data = DataPage()
+        data.exec_()
+
+    def add_forsale_list(self):
+        """매물 리스트 add widget 함수"""
+        self.clear_forsale_list()
+        self.map_move_signal()
+        for_sale = ForSaleList()
+        for_sale.setParent(self.scrollAreaWidgetContents)
+        self.scrollArea.widget().layout().insertWidget(len(self.scrollArea.widget().layout()) - 1, for_sale)
+        for_sale.mousePressEvent = lambda x:self.go_data_page(None)
+
+    def clear_forsale_list(self):
+        """매물 리스트 클리어 이벤트 함수"""
+        layout = self.verticalLayout
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.setParent(None)
+        self.Spacer = QSpacerItem(20, 373, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        layout.addItem(self.Spacer)
+
+    def map_search(self):
+        """카카오 맵 검색 이벤트 함수"""
+        text = self.comboBox.currentText()
+        self.locales = SearchLocale(text)
+
+    def map_move_signal(self):
+        """콤보박스 검색 값 map_move 함수에 좌표 넘겨주는 함수"""
+        x = 126.8247307
+        y = 36.88880944
+        self.map_move(x, y)
+
+    def map_move(self, x, y):
+        """카카오 맵 좌표 값에 따라 이동 이벤트 함수"""
+        page = self.webEngineView.page()
+        script = str.format("setMyCenter({0},{1});", y, x)
+        page = page.runJavaScript(script)
+
 
 
 if __name__ == '__main__':
