@@ -1,4 +1,7 @@
 import json
+from db.class_BusinessAverage import BusinessAverage
+from db.class_Infrastructure import Infrastructure
+from db.class_TouristInfo import TouristInfo
 
 
 class ObjEncoder(json.JSONEncoder):
@@ -65,6 +68,12 @@ class ObjDecoder(json.JSONDecoder):
         if isinstance(dict_obj, str):
             dict_obj = json.loads(dict_obj)
         assert isinstance(dict_obj, dict)
+        if "bus_id" in dict_obj.keys():
+            return BusinessAverage(**dict_obj)
+        elif "inf_id" in dict_obj.keys():
+            return Infrastructure(**dict_obj)
+        elif "tou_id" in dict_obj.keys():
+            return TouristInfo(**dict_obj)
 
     def list_mapper(self, list_obj):
         assert isinstance(list_obj, list)
