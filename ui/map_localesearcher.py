@@ -3,7 +3,7 @@ import urllib.request
 import json
 from map_locale import Locale
 
-key ='5b8a2ea9acc252a5d02768c244cd50bd'
+key ='259650b8903530ddd20debe2a9c5ef73'
 site='https://dapi.kakao.com/v2/local/search/keyword.json'
 auth_key="KakaoAK " + key
 auth_header = "Authorization"

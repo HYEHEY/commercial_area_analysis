@@ -28,47 +28,50 @@
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>20</x>
+      <y>54</y>
       <width>100</width>
-      <height>700</height>
+      <height>620</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-	border-color: rgb(101, 45, 142);
-	color: rgb(101, 45, 142);
+	border-color: rgb(255, 255, 255);
+	color: rgb(170, 206, 56);
 	border-style:solid;
 	border-width:2px;
+	border-radius:10px;
 }
 QPushButton:hover{
 	color: rgb(255, 255, 255);
-	background-color: rgb(101, 45, 142);
-	border-color: rgb(101, 45, 142);
+	background-color: rgb(170, 206, 56);
+	border-color: rgb(255, 255, 255);
 	border-style:solid;
 	border-width:2px;
+	border-radius:10px;
 }
 QPushButton:checked{
 	color: rgb(255, 255, 255);
-	background-color: rgb(101, 45, 142);
-	border-color: rgb(101, 45, 142);
+	background-color: rgb(170, 206, 56);
+	border-color: rgb(170, 206, 56);
 	border-style:solid;
 	border-width:2px;
+	border-radius:10px;
 }</string>
     </property>
     <widget class="QPushButton" name="btn_17">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>660</y>
-       <width>100</width>
-       <height>40</height>
+       <y>592</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -88,15 +91,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>52</y>
-       <width>100</width>
-       <height>40</height>
+       <y>0</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -119,15 +122,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>622</y>
-       <width>100</width>
-       <height>40</height>
+       <y>555</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -147,15 +150,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>584</y>
-       <width>100</width>
-       <height>40</height>
+       <y>518</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -175,15 +178,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>546</y>
-       <width>100</width>
-       <height>40</height>
+       <y>481</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -203,15 +206,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>508</y>
-       <width>100</width>
-       <height>40</height>
+       <y>444</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -231,15 +234,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>470</y>
-       <width>100</width>
-       <height>40</height>
+       <y>407</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -259,15 +262,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>432</y>
-       <width>100</width>
-       <height>40</height>
+       <y>370</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -287,15 +290,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>394</y>
-       <width>100</width>
-       <height>40</height>
+       <y>333</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -315,15 +318,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>356</y>
-       <width>100</width>
-       <height>40</height>
+       <y>296</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -343,15 +346,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>318</y>
-       <width>100</width>
-       <height>40</height>
+       <y>259</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -371,15 +374,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>280</y>
-       <width>100</width>
-       <height>40</height>
+       <y>222</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -399,15 +402,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>242</y>
-       <width>100</width>
-       <height>40</height>
+       <y>185</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -427,15 +430,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>204</y>
-       <width>100</width>
-       <height>40</height>
+       <y>148</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -455,15 +458,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>166</y>
-       <width>100</width>
-       <height>40</height>
+       <y>111</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -483,15 +486,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>128</y>
-       <width>100</width>
-       <height>40</height>
+       <y>74</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -511,15 +514,15 @@ QPushButton:checked{
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>90</y>
-       <width>100</width>
-       <height>40</height>
+       <y>37</y>
+       <width>99</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -538,38 +541,6 @@ QPushButton:checked{
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>101</width>
-       <height>52</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>G마켓 산스 TTF Bold</family>
-       <pointsize>18</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(101, 45, 142);
-border-color: rgb(101, 45, 142);
-border-style: solid;
-border-width: 2px;
-</string>
-     </property>
-     <property name="text">
-      <string>지 역</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
    </widget>
    <widget class="QLabel" name="title_lbl">
     <property name="geometry">
@@ -584,10 +555,12 @@ border-width: 2px;
      <font>
       <family>G마켓 산스 TTF Bold</family>
       <pointsize>32</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(170, 206, 56);</string>
+     <string notr="true">color: rgb(101, 45, 142);</string>
     </property>
     <property name="text">
      <string>서울 관광지 내 입지 추천</string>
@@ -695,6 +668,7 @@ border-width:3px;
     </property>
     <property name="styleSheet">
      <string notr="true">border-width: 3px;
+background-color: rgb(255, 255, 255);
 border-style: solid;
 border-color: rgb(101, 45, 142);</string>
     </property>
@@ -783,32 +757,13 @@ background-color: rgb(255, 255, 255);
 </string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>150</y>
-      <width>151</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-color: rgb(101, 45, 142);
-background-color: rgb(255, 255, 255);
-color: rgb(57, 57, 57);
-border-style: solid;
-border-width: 3px;
-
-</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>865</x>
+      <x>495</x>
       <y>150</y>
-      <width>111</width>
-      <height>34</height>
+      <width>100</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="font">
@@ -885,9 +840,9 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>3</y>
-      <width>131</width>
+      <x>10</x>
+      <y>0</y>
+      <width>151</width>
       <height>51</height>
      </rect>
     </property>

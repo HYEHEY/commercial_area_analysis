@@ -133,8 +133,7 @@ class MainPage(QWidget):
     def map_search(self):
         """카카오 맵 검색 이벤트 함수"""
         text = self.comboBox.currentText()
-        self.locales = SearchLocale(text)
-        print(self.locales)
+        # self.locales = SearchLocale(text)
 
     def map_move_signal(self):
         """콤보박스 검색 값 map_move 함수에 좌표 넘겨주는 함수"""
