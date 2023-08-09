@@ -16,13 +16,6 @@ class Server:
     FORMAT = "utf-8"
     HEADER_LENGTH = 30
 
-    log_in = "log_in"
-    join_user = "join_user"
-    send_chatbot = "send_chatbot"
-    send_all = "send_all"
-    time_to_alarm = "time_to_alarm"
-    user_alarm_list = "user_alarm_list"
-
     pass_encoded = "pass"
     dot_encoded = "."
 
@@ -97,5 +90,6 @@ class Server:
             print(f"Server RECEIVED: ({request_header},{request_data})")
             print(request_header)
             print(type(request_header))
+
         except:
             return False
