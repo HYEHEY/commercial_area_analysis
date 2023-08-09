@@ -33,7 +33,7 @@ class MainPage(QWidget):
 
     def lbl_event(self):
         """라벨 클릭 이벤트 함수"""
-        self.label_3.mousePressEvent = lambda x:self.close_event(None)
+        self.label_3.mousePressEvent = lambda x: self.close_event(None)
 
     def close_event(self, e):
         """프로그램 종료 함수"""
@@ -133,17 +133,16 @@ class MainPage(QWidget):
     def map_search(self):
         """카카오 맵 검색 이벤트 함수"""
         text = self.comboBox.currentText()
-        print(text, "맵")
         self.locales = SearchLocale(text)
 
     def map_move_signal(self):
+        """콤보박스 검색 값 map_move 함수에 좌표 넘겨주는 함수"""
         x = 126.8247307
         y = 36.88880944
         self.map_move(x, y)
 
     def map_move(self, x, y):
         """카카오 맵 좌표 값에 따라 이동 이벤트 함수"""
-        print("이동?")
         page = self.webEngineView.page()
         script = str.format("setMyCenter({0},{1});", y, x)
         page = page.runJavaScript(script)
