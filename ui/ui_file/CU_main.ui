@@ -557,8 +557,8 @@ QPushButton:checked{
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(170, 206, 56);
-border-color: rgb(170, 206, 56);
+background-color: rgb(101, 45, 142);
+border-color: rgb(101, 45, 142);
 border-style: solid;
 border-width: 2px;
 </string>
@@ -574,8 +574,8 @@ border-width: 2px;
    <widget class="QLabel" name="title_lbl">
     <property name="geometry">
      <rect>
-      <x>277</x>
-      <y>15</y>
+      <x>275</x>
+      <y>20</y>
       <width>541</width>
       <height>71</height>
      </rect>
@@ -587,7 +587,7 @@ border-width: 2px;
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(101, 45, 142);</string>
+     <string notr="true">color: rgb(170, 206, 56);</string>
     </property>
     <property name="text">
      <string>서울 관광지 내 입지 추천</string>
@@ -652,14 +652,20 @@ border-width:3px;
     </property>
     <property name="maximumSize">
      <size>
-      <width>360</width>
-      <height>440</height>
+      <width>16777215</width>
+      <height>16777215</height>
      </size>
     </property>
     <property name="styleSheet">
      <string notr="true">border-width: 3px;
 border-style: solid;
 border-color: rgb(101, 45, 142);</string>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -672,6 +678,12 @@ border-color: rgb(101, 45, 142);</string>
        <width>354</width>
        <height>434</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
      </property>
      <property name="styleSheet">
       <string notr="true">border-color: rgb(255, 255, 255);</string>
@@ -754,7 +766,7 @@ border-width: 3px;
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>865</x>
       <y>150</y>
       <width>111</width>
       <height>34</height>
@@ -813,6 +825,9 @@ border-bottom-color: rgb(255, 255, 255);
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Medium</family>
+       <pointsize>9</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -820,12 +835,31 @@ border-bottom-color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>상가종류 </string>
+      <string>상가종류|부동산분류|임대료|보증금|매매가|계약면적|전용면적</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>3</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../ui_img/씨유로고2.PNG</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
  </widget>

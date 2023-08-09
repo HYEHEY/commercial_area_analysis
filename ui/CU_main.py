@@ -1,10 +1,11 @@
 import sys
 
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget, QApplication, QSpacerItem, QSizePolicy
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
 
 from ui.CU_data import DataPage
+from ui.CU_forsale_list import ForSaleList
 
 
 class MainPage(QWidget):
@@ -13,10 +14,28 @@ class MainPage(QWidget):
         loadUi('./ui_file/CU_main.ui', self)
         self.window_option()
         self.btn_event()
+        self.combox_event()
+        self.lbl_event()
+
+    def combox_event(self):
+        """콤보박스 텍스트 체인지 이벤트"""
+        self.comboBox.currentTextChanged.connect(self.test)
+
+    def test(self):
+        """콤보박스 이벤트 테스트"""
+        print(self.comboBox.currentText())
+
+    def lbl_event(self):
+        """라벨 클릭 이벤트 함수"""
+        self.label_3.mousePressEvent = lambda x:self.close_event(None)
+
+    def close_event(self, e):
+        """프로그램 종료 함수"""
+        self.close()
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
-        # self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         self.btn_1.setChecked(True)
         self.set_text("서울", "현대백화점 압구정본점", "신세계백화점 강남점", "타임스퀘어", "코엑스", "롯데몰 김포공항점")
 
@@ -27,7 +46,7 @@ class MainPage(QWidget):
                            self.btn_16,self.btn_17]
         for idx, btn in enumerate(region_btn_list):
             btn.clicked.connect(lambda x=None, y=idx: self.region_info(y))
-        self.search_btn.clicked.connect(self.go_data_page)
+        self.search_btn.clicked.connect(self.add_forsale_list)
 
     def set_text(self, region, t1, t2, t3, t4, t5):
         """지역 정보 텍스트 변경 이벤트 함수"""
@@ -80,10 +99,29 @@ class MainPage(QWidget):
         elif idx == 16:
             self.set_text("제주", "동문재래시장", "서귀포 매일 올레시장", "성산일출봉", "함덕 해수욕장", "곽지 해수욕장")
 
-    def go_data_page(self):
+    def go_data_page(self, e):
         """데이터 페이지 출력 함수"""
         data = DataPage()
         data.exec_()
+
+    def add_forsale_list(self):
+        """매물 리스트 add widget 함수"""
+        self.clear_forsale_list()
+        for_sale = ForSaleList()
+        for_sale.setParent(self.scrollAreaWidgetContents)
+        self.scrollArea.widget().layout().insertWidget(len(self.scrollArea.widget().layout()) - 1, for_sale)
+        for_sale.mousePressEvent = lambda x:self.go_data_page(None)
+
+    def clear_forsale_list(self):
+        """매물 리스트 클리어 이벤트 함수"""
+        layout = self.verticalLayout
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.setParent(None)
+        self.Spacer = QSpacerItem(20, 373, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        layout.addItem(self.Spacer)
 
 
 if __name__ == '__main__':

@@ -16,8 +16,7 @@ class StartPage(QWidget):
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
-        # self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-        pass
+        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
