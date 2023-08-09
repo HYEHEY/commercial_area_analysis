@@ -6,8 +6,9 @@ from PyQt5.QtCore import Qt
 
 from ui.CU_data import DataPage
 from ui.CU_forsale_list import ForSaleList
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
+from map_localesearcher import *
 
 
 class MainPage(QWidget):
@@ -28,11 +29,7 @@ class MainPage(QWidget):
 
     def combox_event(self):
         """콤보박스 텍스트 체인지 이벤트"""
-        self.comboBox.currentTextChanged.connect(self.test)
-
-    def test(self):
-        """콤보박스 이벤트 테스트"""
-        print(self.comboBox.currentText())
+        self.comboBox.currentTextChanged.connect(self.map_search)
 
     def lbl_event(self):
         """라벨 클릭 이벤트 함수"""
@@ -116,6 +113,7 @@ class MainPage(QWidget):
     def add_forsale_list(self):
         """매물 리스트 add widget 함수"""
         self.clear_forsale_list()
+        self.map_move_signal()
         for_sale = ForSaleList()
         for_sale.setParent(self.scrollAreaWidgetContents)
         self.scrollArea.widget().layout().insertWidget(len(self.scrollArea.widget().layout()) - 1, for_sale)
@@ -131,6 +129,25 @@ class MainPage(QWidget):
                 widget.setParent(None)
         self.Spacer = QSpacerItem(20, 373, QSizePolicy.Minimum, QSizePolicy.Expanding)
         layout.addItem(self.Spacer)
+
+    def map_search(self):
+        """카카오 맵 검색 이벤트 함수"""
+        text = self.comboBox.currentText()
+        print(text, "맵")
+        self.locales = SearchLocale(text)
+
+    def map_move_signal(self):
+        x = 126.8247307
+        y = 36.88880944
+        self.map_move(x, y)
+
+    def map_move(self, x, y):
+        """카카오 맵 좌표 값에 따라 이동 이벤트 함수"""
+        print("이동?")
+        page = self.webEngineView.page()
+        script = str.format("setMyCenter({0},{1});", y, x)
+        page = page.runJavaScript(script)
+
 
 
 if __name__ == '__main__':
