@@ -1,12 +1,15 @@
+## 관광지별 편의점 업소 평균 정보 클래스 ##
+
 class BusinessAverage:
+    """관광지별 편의점 업소 평균 정보"""
     def __init__(self, bus_id, bus_tourist, bus_address,
                  bus_business_num, bus_sales, bus_sales_num):
-        self.bus_id = bus_id
-        self.bus_tourist = bus_tourist
-        self.bus_address = bus_address
-        self.bus_business_num = bus_business_num
-        self.bus_sales = bus_sales
-        self.bus_sales_num = bus_sales_num
+        self.bus_id = bus_id                            # 평균 정보 ID
+        self.bus_tourist = bus_tourist                  # 관광지명
+        self.bus_address = bus_address                  # 관광지 주소
+        self.bus_business_num = bus_business_num        # 편의점 업소수
+        self.bus_sales = bus_sales                      # 월평균 매출액
+        self.bus_sales_num = bus_sales_num              # 월평균 매출건수
 
     def __str__(self):
         return f"{self.__repr__()}"

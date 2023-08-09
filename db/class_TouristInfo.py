@@ -1,13 +1,16 @@
+## 관광지 정보 클래스 ##
+
 class TouristInfo:
+    """관광지 정보"""
     def __init__(self, tou_id, tou_region, tou_name, tou_ctg, tou_address, tou_x, tou_y, tou_personnel):
-        self.tou_id = tou_id
-        self.tou_region = tou_region
-        self.tou_name = tou_name
-        self.tou_ctg = tou_ctg
-        self.tou_address = tou_address
-        self.tou_x = tou_x
-        self.tou_y = tou_y
-        self.tou_personnel = tou_personnel
+        self.tou_id = tou_id                    # 관광지 ID
+        self.tou_region = tou_region            # 지역명
+        self.tou_name = tou_name                # 관광지명
+        self.tou_ctg = tou_ctg                  # 관광지 분류(백화점, 자연경관, ...)
+        self.tou_address = tou_address          # 관광지 주소
+        self.tou_x = tou_x                      # 경도
+        self.tou_y = tou_y                      # 위도
+        self.tou_personnel = tou_personnel      # 관광객수
 
     def __str__(self):
         return f"{self.__repr__()}"
