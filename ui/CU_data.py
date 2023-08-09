@@ -3,7 +3,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-
+import pandas as pd
 
 class DataPage(QDialog):
     def __init__(self):
@@ -22,21 +22,16 @@ class DataPage(QDialog):
         self.back_btn_3.clicked.connect(self.show_infra)
 
     def create_example_plot(self):
-        # test
-        # x = [2018, 2019, 2020, 2021, 2022]
-        # y = [204595, 261926, 332034, 319947, 255660]
-        #
-        # plt.plot(x, y)
-        # plt.title('유동인구 그래프')
-        # plt.tight_layout()
-
-        import pandas as pd
+        """꺾은선 그래프 출력 함수"""
         df1 = pd.DataFrame({'x':[2018, 2019, 2020, 2021, 2022], 'y':[204595, 261926, 332034, 319947, 255660]})
-        plt.plot(df1['x'],df1['y'], color='blue', linestyle='-',marker='o')
+        plt.plot(df1['x'], df1['y'], color='blue', linestyle='-',marker='o')
 
         plt.xlim(2017, 2023)
-        plt.ylim(200000, 340000)
+        plt.ylim(150000, 400000)
+        plt.xlabel('년도')
+        plt.ylabel('관광객 수(명)')
         plt.title("유동인구 그래프")
+        plt.xticks(range(2018, 2023))
 
     def create_donut_chart(self):
         sizes = [10, 6, 8, 4, 7]  # 투두리스트 갯수가 들어가야 함.
@@ -63,8 +58,6 @@ class DataPage(QDialog):
         canvas = FigureCanvas(plt.figure())
         self.verticalLayout.addWidget(canvas)
 
-        # 샘플 차트 생성
-        # self.create_donut_chart()  # 도넛 모양 그래프
         self.create_example_plot() # 막대 선그래프
 
     def show_infra(self):
