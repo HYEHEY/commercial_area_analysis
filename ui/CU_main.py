@@ -71,7 +71,7 @@ class MainPage(QWidget):
         """지역 정보 텍스트 변경 이벤트 함수"""
         self.comboBox.clear()
         self.title_lbl.setText(f"{region} 관광지 내 입지 추천")
-        self.comboBox.addItem(" -----------------------")
+        self.comboBox.addItem(" ----------------------")
         self.comboBox.addItem(f"{t1}")
         self.comboBox.addItem(f"{t2}")
         self.comboBox.addItem(f"{t3}")
@@ -118,13 +118,9 @@ class MainPage(QWidget):
         elif idx == 16:
             self.set_text("제주", "동문재래시장", "서귀포매일올레시장", "성산일출봉", "함덕해수욕장", "곽지해수욕장")
 
-    def go_realty_info(self, info_):
+    def go_data_page(self, data_):
         """데이터 페이지 출력 함수"""
-        self.clientapp.send_realty_info_access(info_)
-        self.go_data_page(info_)
-
-    def go_data_page(self, info_):
-        data = DataPage(info_)
+        data = DataPage(self.clientapp, data_)
         data.exec_()
 
     def add_forsale_list(self, info):
@@ -135,7 +131,7 @@ class MainPage(QWidget):
             for_sale = ForSaleList(info_)
             for_sale.setParent(self.scrollAreaWidgetContents)
             self.scrollArea.widget().layout().insertWidget(len(self.scrollArea.widget().layout()) - 1, for_sale)
-            for_sale.mousePressEvent = lambda x=None, y=info_: self.go_realty_info(y)
+            for_sale.mousePressEvent = lambda x=None, y=info_: self.go_data_page(y)
 
     def clear_forsale_list(self):
         """매물 리스트 클리어 이벤트 함수"""
@@ -151,7 +147,7 @@ class MainPage(QWidget):
     def map_search(self):
         """카카오 맵 검색 이벤트 함수"""
         tourist_name = self.comboBox.currentText()
-        if tourist_name == " -----------------------":
+        if tourist_name == " ----------------------":
             return
         else:
             self.clientapp.send_tourist_name_access(tourist_name)
@@ -168,7 +164,6 @@ class MainPage(QWidget):
         page = self.webEngineView.page()
         script = str.format("setMyCenter({0},{1});", x, y)
         page = page.runJavaScript(script)
-
 
 
 if __name__ == '__main__':

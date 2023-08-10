@@ -22,7 +22,7 @@ class ForSaleList(QWidget):
         if selling_price is None:
             selling_price = '-'
         self.label.setText(f' {store_type}  |  {realty_type}  |  {rental_price}  |  {deposit}  |  {selling_price}  |  '
-                           f' {contract_area}m² | {dedicaed_area}m²')
+                           f'{contract_area}m² | {dedicaed_area}m²')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -24,6 +24,7 @@ class ClientApp:
     tourist_name = "tourist_name"
     realty_info = "realty_info"  # 매물 리스트 출력을 위한 헤더
     realty_data = "realty_data"  # 데이터 시각화 하기위한 헤더
+    year_data = "year_data"
 
     def __init__(self):
         self.user_id = None
@@ -77,4 +78,8 @@ class ClientApp:
             # 데이터 시각화를 위한 부동산 정보
             if response_header == self.realty_data:
                 self.client_widget.realty_data_signal.emit(response_data)
+
+            # 년도 데이터 정보
+            if response_header == self.year_data:
+                self.client_widget.year_data_signal.emit(response_data)
 
