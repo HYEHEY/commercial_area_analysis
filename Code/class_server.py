@@ -2,11 +2,12 @@ import os
 import threading
 from socket import *
 from threading import Thread, Event, Timer
-from Test.test_db import DB
 from class_json import *
 import select
 import re
 import datetime
+
+from db.class_dbconnect import DBConnector
 
 
 class Server:
@@ -22,7 +23,7 @@ class Server:
     pass_encoded = "pass"
     dot_encoded = "."
 
-    def __init__(self, db_conn: DB):
+    def __init__(self, db_conn: DBConnector):
         # 서버 소켓 설정
         self.db_conn = db_conn
         self.server_socket = None
