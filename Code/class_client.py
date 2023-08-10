@@ -22,7 +22,9 @@ class ClientApp:
     HEADER_LENGTH = 30
 
     tourist_name = "tourist_name"
-    realty_info = "realty_info"
+    realty_info = "realty_info"  # 매물 리스트 출력을 위한 헤더
+    realty_data = "realty_data"  # 데이터 시각화 하기위한 헤더
+    year_data = "year_data"
 
     def __init__(self):
         self.user_id = None
@@ -41,10 +43,17 @@ class ClientApp:
         self.client_widget = widget_
 
     def send_tourist_name_access(self, tourist_name):
-        """관광지 명 서버로 보내기"""
+        """관광지 명 서버로 전송"""
         data_msg = tourist_name
         header_data = self.tourist_name
         self.fixed_volume(header_data, data_msg)
+
+    def send_realty_info_access(self, realty_data):
+        """관광지 데이터 서버로 전송"""
+        data_msg = realty_data
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
+        header_data = self.realty_data
+        self.fixed_volume(header_data, data_msg_str)
 
     def fixed_volume(self, header, data):
         """데이터 길이 맞춰서 서버로 전송"""
@@ -65,4 +74,12 @@ class ClientApp:
             # 부동산 정보
             if response_header == self.realty_info:
                 self.client_widget.realty_info_signal.emit(response_data)
+
+            # 데이터 시각화를 위한 부동산 정보
+            if response_header == self.realty_data:
+                self.client_widget.realty_data_signal.emit(response_data)
+
+            # 년도 데이터 정보
+            if response_header == self.year_data:
+                self.client_widget.year_data_signal.emit(response_data)
 

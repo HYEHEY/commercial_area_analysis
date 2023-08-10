@@ -546,14 +546,14 @@ QPushButton:checked{
     <property name="geometry">
      <rect>
       <x>275</x>
-      <y>20</y>
+      <y>10</y>
       <width>541</width>
       <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>G마켓 산스 TTF Bold</family>
+      <family>티머니 둥근바람 ExtraBold</family>
       <pointsize>32</pointsize>
       <weight>75</weight>
       <bold>true</bold>
@@ -843,9 +843,9 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>0</y>
-      <width>151</width>
+      <width>141</width>
       <height>51</height>
      </rect>
     </property>
