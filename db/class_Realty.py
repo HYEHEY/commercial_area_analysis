@@ -17,6 +17,12 @@ class Realty:
         self.reg_rantal_price = reg_rantal_price        # 임대료
         self.reg_deposit = reg_deposit                  # 보증금
         self.reg_selling_price = reg_selling_price      # 매매가
+        self.find_year_peple()
+
+    def find_year_peple(self):
+        """년도별 방문 통계 반환"""
+        # print(f"{addr_=}")
+        return self.rea_address
 
     def __str__(self):
         return f"{self.__repr__()}"
