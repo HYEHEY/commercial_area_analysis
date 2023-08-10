@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import pandas as pd
 
+
 class DataPage(QDialog):
-    def __init__(self):
+    def __init__(self, id_):
         super().__init__()
         # 기본 한글 폰트 설정
         plt.rcParams['font.family'] = 'Malgun Gothic'
@@ -14,6 +15,7 @@ class DataPage(QDialog):
         loadUi('./ui_file/CU_data.ui', self)
         self.window_option()
         self.btn_event()
+        self.label.setText(str(id_))
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
