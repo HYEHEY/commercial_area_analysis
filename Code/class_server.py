@@ -20,6 +20,8 @@ class Server:
 
     tourist_name = "tourist_name"
     realty_info = "realty_info"
+    realty_data = "realty_data"
+    year_data = "year_data"
     pass_encoded = "pass"
     dot_encoded = "."
 
@@ -100,7 +102,7 @@ class Server:
             return False
 
         if request_header == self.tourist_name:
-            result_ = self.db_conn.tou_data(request_data)
+            result_ = self.db_conn.find_tourist_info(request_data)
             if result_ is False:
                 response_header = self.tourist_name
                 response_data = self.dot_encoded
@@ -112,7 +114,7 @@ class Server:
                 return_result = self.fixed_volume(response_header, response_data)
                 self.send_message(client_socket, return_result)
 
-            result_2 = self.db_conn.bu_data(request_data)
+            result_2 = self.db_conn.find_realty_info(request_data)
             if result_2 is False:
                 response_header = self.realty_info
                 response_data = self.dot_encoded
@@ -123,3 +125,10 @@ class Server:
                 response_data = self.encoder.toJSON_as_binary(result_2)
                 return_result = self.fixed_volume(response_header, response_data)
                 self.send_message(client_socket, return_result)
+        elif request_header == self.realty_data:
+            obj_ = self.decoder.binary_to_obj(request_data)
+            result_ = self.db_conn.search_addr(obj_, "year")
+            response_header = self.year_data
+            response_data = self.encoder.toJSON_as_binary(result_)
+            return_result = self.fixed_volume(response_header, response_data)
+            self.send_message(client_socket, return_result)
