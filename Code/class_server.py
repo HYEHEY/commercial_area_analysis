@@ -2,6 +2,7 @@ import os
 import threading
 from socket import *
 from threading import Thread, Event, Timer
+from Test.test_db import DB
 from class_json import *
 import select
 import re
@@ -16,11 +17,14 @@ class Server:
     FORMAT = "utf-8"
     HEADER_LENGTH = 30
 
+    tourist_name = "tourist_name"
+    realty_info = "realty_info"
     pass_encoded = "pass"
     dot_encoded = "."
 
-    def __init__(self):
+    def __init__(self, db_conn: DB):
         # 서버 소켓 설정
+        self.db_conn = db_conn
         self.server_socket = None
         self.config = None
         self.sockets_list = list()
@@ -93,3 +97,28 @@ class Server:
 
         except:
             return False
+
+        if request_header == self.tourist_name:
+            result_ = self.db_conn.tou_data(request_data)
+            if result_ is False:
+                response_header = self.tourist_name
+                response_data = self.dot_encoded
+                return_result = self.fixed_volume(response_header, response_data)
+                self.send_message(client_socket, return_result)
+            else:
+                response_header = self.tourist_name
+                response_data = self.encoder.toJSON_as_binary(result_)
+                return_result = self.fixed_volume(response_header, response_data)
+                self.send_message(client_socket, return_result)
+
+            result_2 = self.db_conn.bu_data(request_data)
+            if result_2 is False:
+                response_header = self.realty_info
+                response_data = self.dot_encoded
+                return_result = self.fixed_volume(response_header, response_data)
+                self.send_message(client_socket, return_result)
+            else:
+                response_header = self.realty_info
+                response_data = self.encoder.toJSON_as_binary(result_2)
+                return_result = self.fixed_volume(response_header, response_data)
+                self.send_message(client_socket, return_result)

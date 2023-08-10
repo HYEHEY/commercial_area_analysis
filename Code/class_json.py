@@ -1,7 +1,10 @@
 import json
 from db.class_BusinessAverage import BusinessAverage
 from db.class_Infrastructure import Infrastructure
+from db.class_Realty import Realty
+from db.class_RegionTourist import RegionTourist
 from db.class_TouristInfo import TouristInfo
+from db.class_YearTourist import YearTourist
 
 
 class ObjEncoder(json.JSONEncoder):
@@ -26,6 +29,7 @@ class ObjEncoder(json.JSONEncoder):
         return self.toJSON_an_object_with_encode(obj)
 
     def toJSON_an_object_with_encode(self, obj):
+        print(obj)
         json_string = self.toJSON_an_object(obj)
         # return json_string.encode('utf-8')
         return json_string
@@ -72,8 +76,14 @@ class ObjDecoder(json.JSONDecoder):
             return BusinessAverage(**dict_obj)
         elif "inf_id" in dict_obj.keys():
             return Infrastructure(**dict_obj)
+        elif "rea_id" in dict_obj.keys():
+            return Realty(**dict_obj)
+        elif "reg_id" in dict_obj.keys():
+            return RegionTourist(**dict_obj)
         elif "tou_id" in dict_obj.keys():
             return TouristInfo(**dict_obj)
+        elif "yea_id" in dict_obj.keys():
+            return YearTourist(**dict_obj)
 
     def list_mapper(self, list_obj):
         assert isinstance(list_obj, list)
@@ -82,5 +92,3 @@ class ObjDecoder(json.JSONDecoder):
             converted_o = self.object_mapper(o)
             result_list.append(converted_o)
         return result_list
-
-
