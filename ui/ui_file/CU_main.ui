@@ -756,6 +756,9 @@ border-width: 3px;
 background-color: rgb(255, 255, 255);
 </string>
     </property>
+    <property name="currentText">
+     <string/>
+    </property>
    </widget>
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
