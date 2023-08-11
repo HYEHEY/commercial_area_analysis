@@ -122,6 +122,8 @@ class MainPage(QWidget):
         """데이터 페이지 출력 함수"""
         data = DataPage(self.clientapp, data_)
         data.exec_()
+        self.clientapp.set_widget(self)
+
 
     def add_forsale_list(self, info):
         """매물 리스트 add widget 함수"""

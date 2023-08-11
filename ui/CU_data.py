@@ -35,23 +35,28 @@ class DataPage(QDialog):
         self.back_btn_2.clicked.connect(self.create_example_plot)
         self.back_btn_3.clicked.connect(self.show_infra)
 
-    def create_example_plot(self, year):
+    def create_example_plot(self, year_):
         """꺾은선 그래프 출력 함수"""
+        year_data = self.decoder.binary_to_obj(year_)
+        year_list = []
+        year_personnel_list = []
+        for year in year_data:
+            year_id = year.yea_id
+            years = year.yea_year
+            year_list.append(years)
+            year_tourist = year.yea_tourist
+            year_personnel = year.yea_personnel
+            year_personnel_list.append(year_personnel)
+        print(year_list, year_personnel_list)
 
-
-        df1 = pd.DataFrame({'x':[2018, 2019, 2020, 2021, 2022], 'y':[204595, 261926, 332034, 319947, 255660]})
+        df1 = pd.DataFrame({'x': year_list, 'y': year_personnel_list})
         plt.plot(df1['x'], df1['y'], color='blue', alpha=0.4, linestyle='-', marker='*')
 
-        # if len(self.year) == 3:
-        #     plt.xlim(2019, 2023)
-        # if len(self.year) == 4:
-        #     plt.xlim(2018, 2023)
-        # if len(self.year) == 5:
-        #     plt.xlim(2017, 2023)
+        plt.xlim((year_list[0]-1), (year_list[-1]+1))
         plt.xlabel('년도')
         plt.ylabel('관광객 수(명)')
         plt.title("유동인구 그래프")
-        plt.xticks(range(2018, 2023))
+        plt.xticks(range((year_list[0]), (year_list[-1]+1)))
 
 
     def create_plot(self):
@@ -68,13 +73,9 @@ class DataPage(QDialog):
     def show_population(self, year_):
         """유동인구 출력 함수"""
         # 맷플롯 캔버스 만들기 및 레이아웃에 캔버스 추가
-        print(year_)
-        year_data = self.decoder.binary_to_obj(year_)
-        print(year_data)
         self.clear_layout(self.verticalLayout)
         canvas = FigureCanvas(plt.figure())
         self.verticalLayout.addWidget(canvas)
-
         self.create_example_plot(year_)
 
     def show_infra(self):
