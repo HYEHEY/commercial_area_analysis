@@ -81,7 +81,6 @@ class DBConnector:
 
     def find_store_average(self, nm_):
         """관광지 주변 편의점 평균 정보 반환"""
-        # todo: 관광지명 기준으로 편의점 평균 매출 리턴
         info_list = self.read_db(2, "TB_BUSINESS_AVERAGE", "BUS_TOURIST", f"{nm_}")
         print(f"평균_정보: {info_list}")
 
@@ -92,9 +91,11 @@ class DBConnector:
         self.end_conn()
         return find_result_list
 
-    def find_infra_info(self, addr_):
+    def find_infra_info(self, realty_obj:Realty):
         """매물 주변 상권 정보 반환"""
-        # todo: 매물 주소를 기준으로 주변 인프라 정보 리턴
+        addr_ = realty_obj.rea_address
+        # print(f"{addr_=}")
+
         info_list = self.read_db(2, "TB_INFRASTRUCTURE", "INF_ADDRESS", f"{addr_}")
         print(f"주변_상권: {info_list}")
 
@@ -135,15 +136,17 @@ class DBConnector:
 
         return info_list
 
-    def search_addr(self, realty_obj: Realty):
+    def search_addr(self, realty_obj: Realty, set_):
         """주소 조회 후 관광지명 반환"""
         addr_ = realty_obj.rea_address
         # print(f"{addr_=}")
         tourist_name = self.read_db(1, "TB_REALTY", "REA_ADDRESS", f"{addr_}")
         print(tourist_name[0][1])
 
-        self.find_year_peple(tourist_name[0][1])
-        self.find_store_average(tourist_name[0][1])
+        if set_ == "year":
+            return self.find_year_peple(tourist_name[0][1])
+        elif set_ == "average":
+            return self.find_store_average(tourist_name[0][1])
 
 
 if __name__ == '__main__':
@@ -151,5 +154,6 @@ if __name__ == '__main__':
     db.test_option = True
 
     ### test ###
-    info_ = db.find_realty_info('에버랜드')
-    db.search_addr(info_[0])
+    info_ = db.find_realty_info('오동도')
+    # db.search_addr(info_[0])
+    db.find_infra_info(info_[0])
