@@ -67,12 +67,12 @@ class DataPage(QDialog):
         """파이 그래프 출력 함수"""
         infra_data = self.decoder.binary_to_obj(infra_)
         infra_list = list()
-        mart = infra_data.inf_mt1
+        mart = infra_data.inf_cp1
         infra_list.append(mart)
-        store = infra_data.inf_cs2
-        infra_list.append(store)
-        child = infra_data.inf_ps3
-        infra_list.append(child)
+        life = infra_data.inf_lf2
+        infra_list.append(life)
+        sports = infra_data.inf_sp3
+        infra_list.append(sports)
         school = infra_data.inf_sc4
         infra_list.append(school)
         academy = infra_data.inf_ac5
@@ -103,11 +103,22 @@ class DataPage(QDialog):
         infra_list.append(hospital)
         pharmacy = infra_data.inf_pm9
         infra_list.append(pharmacy)
+        fashion = infra_data.inf_fs1
+        infra_list.append(fashion)
+        beauty = infra_data.inf_bt2
+        infra_list.append(beauty)
+        building = infra_data.inf_bd3
+        infra_list.append(building)
+        religion = infra_data.inf_rl4
+        infra_list.append(religion)
+        home = infra_data.inf_rf5
+        infra_list.append(home)
 
         infra_num_list = list()
         labels = list()
-        label = ['대형마트', '편의점', '어린이집,유치원', '학교', '학원', '주차장', '주유소', '지하철역',
-                  '은행', '문화시설', '중개업소', '공공기관', '관광명소', '숙박', '음식점', '카페', '병원', '약국']
+        label = ['경쟁업체', '여가시설', '스포츠', '학교', '학원', '주차장', '주유소', '지하철역',
+                  '은행', '문화시설', '중개업소', '공공기관', '관광명소', '숙박', '음식점', '카페', '의료시설', '약국',
+                 '패션', '미용', '빌딩', '종교', '주거시설']
         for infra, label in zip (infra_list, label):
             if infra != 0:
                 infra_num_list.append(infra)
@@ -156,7 +167,7 @@ class DataPage(QDialog):
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-        self.move(590, 241)
+        self.move(600, 241)
         self.back_btn_2.setChecked(True)
 
     def clear_layout(self, layout: QLayout):

@@ -17,7 +17,7 @@ class ClientApp:
     HOST = '10.10.20.115'
     # HOST = '127.0.0.1'
     PORT = 9999
-    BUFFER = 50000
+    BUFFER = 100000
     FORMAT = "utf-8"
     HEADER_LENGTH = 30
 
