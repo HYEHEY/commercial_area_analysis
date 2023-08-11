@@ -11,6 +11,7 @@ from Code.class_json import *
 
 class DataPage(QDialog):
     year_data_signal = pyqtSignal(str)
+    infra_data_signal = pyqtSignal(str)
 
     def __init__(self, clientapp, data_):
         super().__init__()
@@ -21,61 +22,75 @@ class DataPage(QDialog):
         loadUi('./ui_file/CU_data.ui', self)
         self.clientapp = clientapp
         self.clientapp.set_widget(self)
-        self.clientapp.send_realty_info_access(data_)
+        self.data = data_
         self.window_option()
         self.btn_event()
-        self.year_data_signal.connect(self.show_population)
-
+        self.signal_event()
+        self.population_signal()
         self.encoder = ObjEncoder()
         self.decoder = ObjDecoder()
+
+    def signal_event(self):
+        """시그널 이벤트 함수"""
+        self.year_data_signal.connect(self.show_population)
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
         self.back_btn.clicked.connect(lambda x: self.close())
-        self.back_btn_2.clicked.connect(self.create_example_plot)
+        self.back_btn_2.clicked.connect(self.population_signal)
         self.back_btn_3.clicked.connect(self.show_infra)
 
-    def create_example_plot(self, year):
+    def create_population_plot(self, year_):
         """꺾은선 그래프 출력 함수"""
+        year_data = self.decoder.binary_to_obj(year_)
+        year_list = []
+        year_personnel_list = []
+        for year in year_data:
+            year_id = year.yea_id
+            years = year.yea_year
+            year_list.append(years)
+            year_tourist = year.yea_tourist
+            year_personnel = year.yea_personnel
+            year_personnel_list.append(year_personnel)
 
-
-        df1 = pd.DataFrame({'x':[2018, 2019, 2020, 2021, 2022], 'y':[204595, 261926, 332034, 319947, 255660]})
+        df1 = pd.DataFrame({'x': year_list, 'y': year_personnel_list})
         plt.plot(df1['x'], df1['y'], color='blue', alpha=0.4, linestyle='-', marker='*')
 
-        # if len(self.year) == 3:
-        #     plt.xlim(2019, 2023)
-        # if len(self.year) == 4:
-        #     plt.xlim(2018, 2023)
-        # if len(self.year) == 5:
-        #     plt.xlim(2017, 2023)
+        plt.xlim((year_list[0]-1), (year_list[-1]+1))
         plt.xlabel('년도')
         plt.ylabel('관광객 수(명)')
-        plt.title("유동인구 그래프")
-        plt.xticks(range(2018, 2023))
+        plt.title("관광지 방문객 수 그래프")
+        plt.xticks(range((year_list[0]), (year_list[-1]+1)))
 
-
-    def create_plot(self):
+    def create_infra_plot(self):
         """막대 그래프 출력 함수"""
-        list_x = [2019, 2020, 2021, 2022]
-        list_y = [1, 2, 3, 4]
+        labels = [2019, 2020, 2021, 2022]
+        ratio = [1, 2, 3, 4]
+        colors = ['#ff9999', '#ffc000', '#8fd9b6', '#d395d0']
+        wedgeprops = {'width': 0.7, 'edgecolor': 'w', 'linewidth': 5}
 
-        plt.bar(list_x, list_y, color='blue', width=0.5, alpha=0.4)
+        plt.pie()
+
         plt.xlabel('년도')
         plt.ylabel('개수')
         plt.title("막대 그래프")
         plt.xticks(range(2019, 2023))
 
+    def population_signal(self):
+        """클라이언트로 인구 데이터 시그널 전송 함수"""
+        self.clientapp.send_realty_info_access(self.data)
+
+    def infra_signal(self):
+        """클라이언트로 인프라 데이터 시그널 전송 함수"""
+        self.clientapp.send_realty_info_access(self.data)
+
     def show_population(self, year_):
         """유동인구 출력 함수"""
         # 맷플롯 캔버스 만들기 및 레이아웃에 캔버스 추가
-        print(year_)
-        year_data = self.decoder.binary_to_obj(year_)
-        print(year_data)
         self.clear_layout(self.verticalLayout)
         canvas = FigureCanvas(plt.figure())
         self.verticalLayout.addWidget(canvas)
-
-        self.create_example_plot(year_)
+        self.create_population_plot(year_)
 
     def show_infra(self):
         """주변 인프라 출력 함수"""
@@ -84,15 +99,13 @@ class DataPage(QDialog):
         self.verticalLayout.addWidget(canvas)
 
         # 샘플 차트 생성
-        self.create_plot()  # 막대 그래프
-
+        self.create_infra_plot()  # 막대 그래프
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         self.move(590, 241)
         self.back_btn_2.setChecked(True)
-
 
     def clear_layout(self, layout: QLayout):
         """레이아웃 안의 모든 객체를 지웁니다."""
