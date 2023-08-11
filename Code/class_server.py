@@ -14,7 +14,7 @@ class Server:
     HOST = '10.10.20.115'
     # HOST = '127.0.0.1'
     PORT = 9999
-    BUFFER = 50000
+    BUFFER = 100000
     FORMAT = "utf-8"
     HEADER_LENGTH = 30
 
@@ -22,6 +22,7 @@ class Server:
     realty_info = "realty_info"
     realty_data = "realty_data"
     year_data = "year_data"
+    infra_data = "infra_data"
     pass_encoded = "pass"
     dot_encoded = "."
 
@@ -132,3 +133,12 @@ class Server:
             response_data = self.encoder.toJSON_as_binary(result_)
             return_result = self.fixed_volume(response_header, response_data)
             self.send_message(client_socket, return_result)
+
+        elif request_header == self.infra_data:
+            obj_ = self.decoder.binary_to_obj(request_data)
+            result_ = self.db_conn.find_infra_info(obj_)
+            response_header = self.infra_data
+            response_data = self.encoder.toJSON_as_binary(result_)
+            return_result = self.fixed_volume(response_header, response_data)
+            self.send_message(client_socket, return_result)
+
