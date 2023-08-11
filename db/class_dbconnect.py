@@ -58,6 +58,7 @@ class DBConnector:
     def find_realty_info(self, nm_):
         """부동산 정보 반환"""
         info_list = self.read_db(1, "TB_REALTY", "REA_TOURIST", f"{nm_}")
+        # ID, 관광지명, 부동산주소, 상가종류, 경도, 위도, 계약면적, 전용면적, 부동산분류, 임대료, 보증금, 매매가
 
         find_result_list = list()
         for info in info_list:
@@ -70,26 +71,25 @@ class DBConnector:
     def find_tourist_info(self, nm_):
         """관광지 정보 반환"""
         info_list = self.read_db(2, "TB_TOURIST_INFO", "TOU_NAME", f"{nm_}")
+        # ID, 지역명, 관광지명, 관광지주소, 관광지분류, 경도, 위도, 관광객수
         print(f"관광지_정보: {info_list}")
 
-        find_result_list = list()
         tourist_obj = TouristInfo(*info_list)
-        find_result_list.append(tourist_obj)
 
         self.end_conn()
-        return find_result_list
+        return tourist_obj
 
     def find_store_average(self, nm_):
         """관광지 주변 편의점 평균 정보 반환"""
         info_list = self.read_db(2, "TB_BUSINESS_AVERAGE", "BUS_TOURIST", f"{nm_}")
+        # ID, 관광지명, 관광지주소, 편의점업소수,
         print(f"평균_정보: {info_list}")
 
         find_result_list = list()
         tourist_obj = BusinessAverage(*info_list)
-        find_result_list.append(tourist_obj)
 
         self.end_conn()
-        return find_result_list
+        return tourist_obj
 
     def find_infra_info(self, realty_obj:Realty):
         """매물 주변 상권 정보 반환"""
@@ -97,18 +97,20 @@ class DBConnector:
         # print(f"{addr_=}")
 
         info_list = self.read_db(2, "TB_INFRASTRUCTURE", "INF_ADDRESS", f"{addr_}")
+        # ID, 관광지명, 부동산주소, 대형마트, 편의점, 유치원(어린이집), 학교, 학원, 주차장, 주유소(충전소),
+        # 지하철역, 은행, 문화시설, 중개업소, 공공기관, 관광명소, 숙박, 음식점, 카페, 병원, 약국
         print(f"주변_상권: {info_list}")
 
         find_result_list = list()
         tourist_obj = Infrastructure(*info_list)
-        find_result_list.append(tourist_obj)
 
         self.end_conn()
-        return find_result_list
+        return tourist_obj
 
     def find_year_peple(self, nm_):
         """년도별 방문 통계 반환"""
         info_list = self.read_db(1, "TB_YEAR_TOURIST", "YEA_TOURIST", f"{nm_}")
+        # ID, 관광지명, 년도, 관광객수
         print(f"년도별_방문_통계: {info_list}")
 
         find_result_list = list()
@@ -141,6 +143,7 @@ class DBConnector:
         addr_ = realty_obj.rea_address
         # print(f"{addr_=}")
         tourist_name = self.read_db(1, "TB_REALTY", "REA_ADDRESS", f"{addr_}")
+        # ID, 관광지명, 부동산주소, 상가종류, 경도, 위도, 계약면적, 전용면적, 부동산분류, 임대료, 보증금, 매매가
         print(tourist_name[0][1])
 
         if set_ == "year":
