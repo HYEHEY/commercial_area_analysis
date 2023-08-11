@@ -156,7 +156,7 @@ class MainPage(QWidget):
 
     def map_move_event(self, info):
         """콤보박스 검색 값 map_move 함수에 좌표 넘겨주는 함수"""
-        information = self.decoder.binary_to_obj(info)[0]
+        information = self.decoder.binary_to_obj(info)
         x_value = information.tou_x
         y_value = information.tou_y
         self.map_move(x_value, y_value)

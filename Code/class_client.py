@@ -56,6 +56,12 @@ class ClientApp:
         header_data = self.realty_data
         self.fixed_volume(header_data, data_msg_str)
 
+    def send_infra_data_access(self, realty_data):
+        data_msg = realty_data
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
+        header_data = self.infra_data
+        self.fixed_volume(header_data, data_msg_str)
+
     def fixed_volume(self, header, data):
         """데이터 길이 맞춰서 서버로 전송"""
         header_msg = f"{header:<{self.HEADER_LENGTH}}".encode(self.FORMAT)
