@@ -120,17 +120,13 @@ class DataPage(QDialog):
         if len(infra_num_list) == 0:
             img_ = img.imread('./ui_img/텅.png')
             plt.imshow(img_)
-            plt.rcParams["figure.figsize"] = (10,5)
-            plt.gca().axes.xaxis.set_visible(False)
-            plt.gca().axes.yaxis.set_visible(False)
             plt.axis('off')
         else:
-            plt.pie(ratio, labels=labels, autopct='%.1f%%', startangle=90, counterclock=False, colors=colors,
+            plt.pie(ratio, autopct='%.1f%%', startangle=90, counterclock=False, colors=colors,
                     wedgeprops=wedgeprops)
-            plt.title("매물기준 반경 330m 주변 인프라", pad=30)
+            plt.legend(labels, loc='lower left', bbox_to_anchor=(0, 0.7))
+            plt.title("매물기준 반경 330m 주변 인프라", pad=20)
             plt.axis('equal')
-
-
 
     def population_signal(self):
         """클라이언트로 인구 데이터 시그널 전송 함수"""

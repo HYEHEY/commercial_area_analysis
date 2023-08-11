@@ -545,8 +545,8 @@ QPushButton:checked{
    <widget class="QLabel" name="title_lbl">
     <property name="geometry">
      <rect>
-      <x>275</x>
-      <y>8</y>
+      <x>300</x>
+      <y>3</y>
       <width>541</width>
       <height>71</height>
      </rect>
@@ -734,9 +734,9 @@ border-color: rgb(101, 45, 142);</string>
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>155</y>
-      <width>191</width>
+      <x>620</x>
+      <y>160</y>
+      <width>201</width>
       <height>33</height>
      </rect>
     </property>
@@ -763,9 +763,9 @@ background-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>498</x>
-      <y>155</y>
-      <width>100</width>
+      <x>859</x>
+      <y>160</y>
+      <width>121</width>
       <height>35</height>
      </rect>
     </property>
@@ -849,6 +849,9 @@ border-color: rgb(255, 255, 255);</string>
       <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -859,6 +862,54 @@ border-color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>68</y>
+      <width>271</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../ui_img/캐릭터2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>73</y>
+      <width>139</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../ui_img/캐릭터3.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label_4</zorder>
+   <zorder>widget_2</zorder>
+   <zorder>title_lbl</zorder>
+   <zorder>widget_3</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>comboBox</zorder>
+   <zorder>search_btn</zorder>
+   <zorder>widget_4</zorder>
+   <zorder>label_3</zorder>
   </widget>
  </widget>
  <resources/>
