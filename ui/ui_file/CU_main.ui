@@ -31,7 +31,7 @@
       <x>20</x>
       <y>54</y>
       <width>100</width>
-      <height>620</height>
+      <height>630</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -546,7 +546,7 @@ QPushButton:checked{
     <property name="geometry">
      <rect>
       <x>275</x>
-      <y>10</y>
+      <y>8</y>
       <width>541</width>
       <height>71</height>
      </rect>
@@ -554,7 +554,7 @@ QPushButton:checked{
     <property name="font">
      <font>
       <family>티머니 둥근바람 ExtraBold</family>
-      <pointsize>32</pointsize>
+      <pointsize>33</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -735,7 +735,7 @@ border-color: rgb(101, 45, 142);</string>
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>150</y>
+      <y>155</y>
       <width>191</width>
       <height>33</height>
      </rect>
@@ -763,8 +763,8 @@ background-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>495</x>
-      <y>150</y>
+      <x>498</x>
+      <y>155</y>
       <width>100</width>
       <height>35</height>
      </rect>
@@ -777,8 +777,8 @@ background-color: rgb(255, 255, 255);
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(170, 206, 56);
-border-color: rgb(170, 206, 56);
+background-color: rgb(101, 45, 142);
+border-color: rgb(101, 45, 142);
 border-style: solid;
 border-width:1px;
 border-radius: 10px;
