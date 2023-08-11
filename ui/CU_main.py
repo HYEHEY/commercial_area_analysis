@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QWidget, QApplication, QSpacerItem, QSizePolicy
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt, pyqtSignal
 
+
 from Code.class_client import ClientApp
 from ui.CU_data import DataPage
 from ui.CU_forsale_list import ForSaleList
@@ -32,6 +33,8 @@ class MainPage(QWidget):
         self.decoder = ObjDecoder()
 
 
+
+
     def kakao_map(self):
         """카카오 맵 API 출력 이벤트 함수"""
         self.webEngineView = QWebEngineView()
@@ -56,7 +59,7 @@ class MainPage(QWidget):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.btn_1.setChecked(True)
-        self.set_text("서울", "현대백화점압구정본점", "신세계백화점강남점", "타임스퀘어", "코엑스", "롯데몰김포공항점")
+        self.set_text("서   울", "현대백화점압구정본점", "신세계백화점강남점", "타임스퀘어", "코엑스", "롯데몰김포공항점")
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""

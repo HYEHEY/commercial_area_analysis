@@ -74,7 +74,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -102,7 +102,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -133,7 +133,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -161,7 +161,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -189,7 +189,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -217,7 +217,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -245,7 +245,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -273,7 +273,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -301,7 +301,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -329,7 +329,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -357,7 +357,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -385,7 +385,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -413,7 +413,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -441,7 +441,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -469,7 +469,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -497,7 +497,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -525,7 +525,7 @@ QPushButton:checked{
      <property name="font">
       <font>
        <family>G마켓 산스 TTF Bold</family>
-       <pointsize>12</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -551,7 +551,7 @@ QPushButton:checked{
       <x>411</x>
       <y>0</y>
       <width>222</width>
-      <height>81</height>
+      <height>80</height>
      </rect>
     </property>
     <property name="font">
@@ -760,6 +760,9 @@ border-width: 3px;
 background-color: rgb(255, 255, 255);
 </string>
     </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
     <property name="currentText">
      <string/>
     </property>
@@ -767,9 +770,9 @@ background-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>449</x>
       <y>157</y>
-      <width>161</width>
+      <width>171</width>
       <height>37</height>
      </rect>
     </property>
@@ -847,7 +850,7 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>780</x>
+      <x>782</x>
       <y>89</y>
       <width>211</width>
       <height>111</height>
@@ -866,7 +869,7 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>595</x>
+      <x>597</x>
       <y>83</y>
       <width>181</width>
       <height>121</height>
@@ -888,7 +891,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>0</x>
       <y>0</y>
       <width>221</width>
-      <height>120</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="text">
@@ -907,7 +910,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>190</x>
       <y>0</y>
       <width>221</width>
-      <height>120</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="text">
@@ -945,7 +948,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>570</x>
       <y>0</y>
       <width>221</width>
-      <height>111</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="text">
@@ -964,7 +967,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>760</x>
       <y>0</y>
       <width>221</width>
-      <height>120</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="text">
@@ -983,7 +986,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>951</x>
       <y>0</y>
       <width>221</width>
-      <height>120</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="text">
@@ -999,9 +1002,9 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>361</x>
+      <x>356</x>
       <y>110</y>
-      <width>39</width>
+      <width>41</width>
       <height>34</height>
      </rect>
     </property>
@@ -1021,10 +1024,10 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>506</x>
-      <y>29</y>
-      <width>34</width>
-      <height>34</height>
+      <x>499</x>
+      <y>25</y>
+      <width>43</width>
+      <height>42</height>
      </rect>
     </property>
     <property name="text">
@@ -1040,7 +1043,7 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="title_lbl_2">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>225</x>
       <y>100</y>
       <width>301</width>
       <height>51</height>
@@ -1065,9 +1068,9 @@ background-color: rgb(255, 255, 245);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <zorder>label_5</zorder>
    <zorder>label_6</zorder>
    <zorder>title_lbl_2</zorder>
+   <zorder>label_5</zorder>
    <zorder>label_9</zorder>
    <zorder>label_8</zorder>
    <zorder>label_7</zorder>
@@ -1076,12 +1079,12 @@ background-color: rgb(255, 255, 245);</string>
    <zorder>label_4</zorder>
    <zorder>widget_3</zorder>
    <zorder>scrollArea</zorder>
-   <zorder>comboBox</zorder>
    <zorder>search_btn</zorder>
    <zorder>widget_4</zorder>
    <zorder>label_10</zorder>
    <zorder>label_3</zorder>
    <zorder>label_11</zorder>
+   <zorder>comboBox</zorder>
    <zorder>widget_2</zorder>
   </widget>
  </widget>
