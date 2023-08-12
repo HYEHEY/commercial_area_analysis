@@ -40,6 +40,7 @@ class DataPage(QDialog):
         self.back_btn.clicked.connect(lambda x: self.close())
         self.back_btn_2.clicked.connect(self.population_signal)
         self.back_btn_3.clicked.connect(self.infra_signal)
+        self.back_btn_4.clicked.connect(self.store_signal)
 
     def create_population_plot(self, year_):
         """꺾은선 그래프 출력 함수"""
@@ -119,7 +120,7 @@ class DataPage(QDialog):
         label = ['경쟁업체', '여가시설', '스포츠', '학교', '학원', '주차장', '주유소', '지하철역',
                   '은행', '문화시설', '중개업소', '공공기관', '관광명소', '숙박', '음식점', '카페', '의료시설', '약국',
                  '패션', '미용', '빌딩', '종교', '주거시설']
-        for infra, label in zip (infra_list, label):
+        for infra, label in zip(infra_list, label):
             if infra != 0:
                 infra_num_list.append(infra)
                 labels.append(label)
@@ -146,6 +147,10 @@ class DataPage(QDialog):
     def infra_signal(self):
         """클라이언트로 인프라 데이터 시그널 전송 함수"""
         self.clientapp.send_infra_data_access(self.data)
+
+    def store_signal(self):
+        """클라이언트로 편의점 월 매출 평균 데이터 시그널 전송 함수"""
+        self.clientapp.
 
     def show_population(self, year_):
         """유동인구 출력 함수"""

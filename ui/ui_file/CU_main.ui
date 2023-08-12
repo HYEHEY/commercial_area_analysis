@@ -551,7 +551,7 @@ QPushButton:checked{
       <x>411</x>
       <y>0</y>
       <width>222</width>
-      <height>80</height>
+      <height>85</height>
      </rect>
     </property>
     <property name="font">
@@ -770,9 +770,9 @@ background-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>449</x>
+      <x>489</x>
       <y>157</y>
-      <width>171</width>
+      <width>131</width>
       <height>37</height>
      </rect>
     </property>
@@ -792,7 +792,7 @@ border-radius: 10px;
 </string>
     </property>
     <property name="text">
-     <string>Search</string>
+     <string>검색</string>
     </property>
    </widget>
    <widget class="QWidget" name="widget_4" native="true">
@@ -850,10 +850,10 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>782</x>
-      <y>89</y>
-      <width>211</width>
-      <height>111</height>
+      <x>780</x>
+      <y>90</y>
+      <width>191</width>
+      <height>110</height>
      </rect>
     </property>
     <property name="text">
@@ -869,10 +869,10 @@ border-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>597</x>
-      <y>83</y>
+      <x>600</x>
+      <y>93</y>
       <width>181</width>
-      <height>121</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="text">
@@ -929,7 +929,7 @@ border-color: rgb(255, 255, 255);</string>
       <x>380</x>
       <y>0</y>
       <width>221</width>
-      <height>111</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="text">
@@ -1026,7 +1026,7 @@ border-color: rgb(255, 255, 255);</string>
      <rect>
       <x>499</x>
       <y>25</y>
-      <width>43</width>
+      <width>44</width>
       <height>42</height>
      </rect>
     </property>
@@ -1068,12 +1068,12 @@ background-color: rgb(255, 255, 245);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <zorder>label_7</zorder>
    <zorder>label_6</zorder>
    <zorder>title_lbl_2</zorder>
    <zorder>label_5</zorder>
    <zorder>label_9</zorder>
    <zorder>label_8</zorder>
-   <zorder>label_7</zorder>
    <zorder>title_lbl</zorder>
    <zorder>label</zorder>
    <zorder>label_4</zorder>
