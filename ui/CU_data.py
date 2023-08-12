@@ -7,11 +7,13 @@ import matplotlib.font_manager as fm
 import matplotlib.image as img
 import pandas as pd
 from Code.class_json import *
+from ui.CU_store_data import StoreData
 
 
 class DataPage(QDialog):
     year_data_signal = pyqtSignal(str)
     infra_data_signal = pyqtSignal(str)
+    store_data_signal = pyqtSignal(str)
 
     def __init__(self, clientapp, data_):
         super().__init__()
@@ -34,6 +36,7 @@ class DataPage(QDialog):
         """시그널 이벤트 함수"""
         self.year_data_signal.connect(self.show_population)
         self.infra_data_signal.connect(self.show_infra)
+        self.store_data_signal.connect(self.show_store)
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
@@ -68,58 +71,31 @@ class DataPage(QDialog):
         """파이 그래프 출력 함수"""
         infra_data = self.decoder.binary_to_obj(infra_)
         infra_list = list()
-        mart = infra_data.inf_cp1
-        infra_list.append(mart)
+        store = infra_data.inf_cp1
+        infra_list.append(store)
         life = infra_data.inf_lf2
         infra_list.append(life)
-        sports = infra_data.inf_sp3
-        infra_list.append(sports)
-        school = infra_data.inf_sc4
-        infra_list.append(school)
-        academy = infra_data.inf_ac5
-        infra_list.append(academy)
-        parking = infra_data.inf_pk6
+        sch_tra = infra_data.inf_sc3
+        infra_list.append(sch_tra)
+        parking = infra_data.inf_pk4
         infra_list.append(parking)
-        oil = infra_data.inf_ol7
-        infra_list.append(oil)
-        subway = infra_data.inf_sw8
-        infra_list.append(subway)
-        bank = infra_data.inf_bk9
-        infra_list.append(bank)
-        cultural = infra_data.inf_ct1
-        infra_list.append(cultural)
-        brokerage = infra_data.inf_ag2
-        infra_list.append(brokerage)
-        public = infra_data.inf_po3
-        infra_list.append(public)
-        attractions = infra_data.inf_at4
-        infra_list.append(attractions)
-        hotel = infra_data.inf_ad5
+        commerce = infra_data.inf_su5
+        infra_list.append(commerce)
+        culture = infra_data.inf_ct6
+        infra_list.append(culture)
+        hotel = infra_data.inf_ad7
         infra_list.append(hotel)
-        restaurant = infra_data.inf_fd6
-        infra_list.append(restaurant)
-        cafe = infra_data.inf_ce7
-        infra_list.append(cafe)
-        hospital = infra_data.inf_hp8
-        infra_list.append(hospital)
-        pharmacy = infra_data.inf_pm9
-        infra_list.append(pharmacy)
-        fashion = infra_data.inf_fs1
-        infra_list.append(fashion)
-        beauty = infra_data.inf_bt2
-        infra_list.append(beauty)
-        building = infra_data.inf_bd3
+        health = infra_data.inf_hc8
+        infra_list.append(health)
+        building = infra_data.inf_bd9
         infra_list.append(building)
-        religion = infra_data.inf_rl4
-        infra_list.append(religion)
-        home = infra_data.inf_rf5
-        infra_list.append(home)
+        dwelling = infra_data.inf_rf0
+        infra_list.append(dwelling)
 
         infra_num_list = list()
         labels = list()
-        label = ['경쟁업체', '여가시설', '스포츠', '학교', '학원', '주차장', '주유소', '지하철역',
-                  '은행', '문화시설', '중개업소', '공공기관', '관광명소', '숙박', '음식점', '카페', '의료시설', '약국',
-                 '패션', '미용', '빌딩', '종교', '주거시설']
+        label = ['경쟁업체', '여가시설', '교육 및 교통시설', '주차시설', '상업시설', '관광 및 문화 시설',
+                 '숙박시설', '건강 및 종교시설', '빌딩', '주거시설']
         for infra, label in zip(infra_list, label):
             if infra != 0:
                 infra_num_list.append(infra)
@@ -140,6 +116,7 @@ class DataPage(QDialog):
             plt.title("매물기준 반경 330m 주변 인프라", pad=20)
             plt.axis('equal')
 
+
     def population_signal(self):
         """클라이언트로 인구 데이터 시그널 전송 함수"""
         self.clientapp.send_realty_info_access(self.data)
@@ -150,7 +127,7 @@ class DataPage(QDialog):
 
     def store_signal(self):
         """클라이언트로 편의점 월 매출 평균 데이터 시그널 전송 함수"""
-        self.clientapp.
+        self.clientapp.send_store_data_access(self.data)
 
     def show_population(self, year_):
         """유동인구 출력 함수"""
@@ -168,6 +145,20 @@ class DataPage(QDialog):
 
         # 샘플 차트 생성
         self.create_infra_plot(infra_)  # 파이 그래프
+
+    def show_store(self, store_):
+        """편의점 매출 출력 함수"""
+        self.clear_layout(self.verticalLayout)
+        store_data = self.decoder.binary_to_obj(store_)
+        data_list = []
+        num = store_data.bus_business_num
+        data_list.append(num)
+        sales = store_data.bus_sales
+        data_list.append(sales)
+        sales_num = store_data.bus_sales_num
+        data_list.append(sales_num)
+        canvas = StoreData(data_list)
+        self.verticalLayout.addWidget(canvas)
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
