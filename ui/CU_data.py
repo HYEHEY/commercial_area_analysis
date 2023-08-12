@@ -191,7 +191,6 @@ class DataPage(QDialog):
         # 점수 계산
         total_score = 50 + (lf2 * 16) + (sc3 * 14) + (pk4 * 4) + (su5 * 6) + (ct6 * 18) + (ad7 * 20) + (hc8 * 4) + (bd9 * 10) + (rf0 * 8) - (cp1 * 4 + self.num)
         data_list.append(int(total_score))
-        print(total_score)
         # 예측 창업 비용
         if self.data.rea_realty_ctg == '월세':
             total_low_cash = self.data.reg_deposit + 2200 + 3600
@@ -201,8 +200,6 @@ class DataPage(QDialog):
             total_high_cash = self.data.reg_selling_price + 2200 + 5000
         data_list.append(total_low_cash)
         data_list.append(total_high_cash)
-        print(total_low_cash)
-        print(total_high_cash)
         canvas = StoreData(data_list, 2)
         self.verticalLayout.addWidget(canvas)
 
