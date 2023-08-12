@@ -165,24 +165,16 @@ df = pd.read_csv('price_output.csv', encoding='utf-8')
 INF_ID = list()
 INF_TOURIST = list()
 INF_ADDRESS = list()
-INF_MT1_list = list()
-INF_CS2_list = list()
-INF_PS3_list = list()
-INF_SC4_list = list()
-INF_AC5_list = list()
-INF_PK6_list = list()
-INF_OL7_list = list()
-INF_SW8_list = list()
-INF_BK9_list = list()
-INF_CT1_list = list()
-INF_AG2_list = list()
-INF_PO3_list = list()
-INF_AT4_list = list()
-INF_AD5_list = list()
-INF_FD6_list = list()
-INF_CE7_list = list()
-INF_HP8_list = list()
-INF_PM9_list = list()
+INF_CP1_list = list()
+INF_LF2_list = list()
+INF_SC3_list = list()
+INF_PK4_list = list()
+INF_SU5_list = list()
+INF_CT6_list = list()
+INF_AD7_list = list()
+INF_HC8_list = list()
+INF_BD9_list = list()
+INF_RF0_list = list()
 
 for i in range(len(df)):
     id_ = df.loc[i, 'INF_ID']
@@ -191,109 +183,72 @@ for i in range(len(df)):
     x_coordinate = df.loc[i, 'INF_X']
     y_coordinate = df.loc[i, 'INF_Y']
     result_01 = kakao.search_keyword(query=addr, x=x_coordinate, y=y_coordinate, radius=330)
-    INF_MT1 = 0
-    INF_CS2 = 0
-    INF_PS3 = 0
-    INF_SC4 = 0
-    INF_AC5 = 0
-    INF_PK6 = 0
-    INF_OL7 = 0
-    INF_SW8 = 0
-    INF_BK9 = 0
-    INF_CT1 = 0
-    INF_AG2 = 0
-    INF_PO3 = 0
-    INF_AT4 = 0
-    INF_AD5 = 0
-    INF_FD6 = 0
-    INF_CE7 = 0
-    INF_HP8 = 0
-    INF_PM9 = 0
-    print(result_01)
+    INF_CP1 = 0
+    INF_LF2 = 0
+    INF_SC3 = 0
+    INF_PK4 = 0
+    INF_SU5 = 0
+    INF_CT6 = 0
+    INF_AD7 = 0
+    INF_HC8 = 0
+    INF_BD9 = 0
+    INF_RF0 = 0
     test = result_01['documents']
+    print(test)
     for j in range(len(test)):
         category_group_code = test[j]['category_group_code']
-        if category_group_code == 'MT1':
-            INF_MT1 += 1
-        elif category_group_code == 'CS2':
-            INF_CS2 += 1
-        elif category_group_code == 'PS3':
-            INF_PS3 += 1
-        elif category_group_code == 'SC4':
-            INF_SC4 += 1
-        elif category_group_code == 'AC5':
-            INF_AC5 += 1
-        elif category_group_code == 'PK6':
-            INF_PK6 += 1
-        elif category_group_code == 'OL7':
-            INF_OL7 += 1
-        elif category_group_code == 'SW8':
-            INF_SW8 += 1
-        elif category_group_code == 'BK9':
-            INF_BK9 += 1
-        elif category_group_code == 'CT1':
-            INF_CT1 += 1
-        elif category_group_code == 'AG2':
-            INF_AG2 += 1
-        elif category_group_code == 'PO3':
-            INF_PO3 += 1
-        elif category_group_code == 'AT4':
-            INF_AT4 += 1
-        elif category_group_code == 'AD5':
-            INF_AD5 += 1
-        elif category_group_code == 'FD6':
-            INF_FD6 += 1
-        elif category_group_code == 'CE7 ':
-            INF_CE7 += 1
-        elif category_group_code == 'HP8':
-            INF_HP8 += 1
-        elif category_group_code == 'PM9':
-            INF_PM9 += 1
+        category_name = test[j]['category_name']
+        place_name = test[j]['place_name']
+        if (category_group_code == 'MT1') or (category_group_code == 'CS2') or ('다이소' in category_name) or ('올리브영' in category_name) or ('마트' in category_name):
+            INF_CP1 += 1
+        if ('여가시설' in category_name) or ('문화시설' in category_name) or ('스포츠' in category_name):
+            INF_LF2 += 1
+        if (category_group_code == 'SC4') or ('학교' in category_name) or (category_group_code == 'AC5') or ('학습시설' in category_name) or (category_group_code == 'SW8') or (category_group_code == 'PO3') or ('학원' in category_name) or ('학교' in place_name) or ('학원' in place_name):
+            INF_SC3 += 1
+        if category_group_code == 'PK6':
+            INF_PK4 += 1
+        if (category_group_code == 'OL7') or (category_group_code == 'FD6') or (category_group_code == 'CE7') or ('음식점' in category_name) or ('패션' in category_name) or ('미용' in category_name):
+            INF_SU5 += 1
+        if category_group_code == 'AT4' or category_group_code == 'CT1':
+            INF_CT6 += 1
+        if (category_group_code == 'AD5') or ('호텔' in place_name) or ('모텔' in place_name) or ('팬션' or place_name) or ('리조트' in place_name) or ('게스트하우스' in place_name) or ('에어비앤비' in place_name) or ('한옥스테이' in place_name) or ('레지던스' in place_name):
+            INF_AD7 += 1
+        if (category_group_code == 'HP8') or ('의료' in category_name) or (category_group_code == 'PM9') or ('종교' in category_name):
+            INF_HC8 += 1
+        if '빌딩' in category_name:
+            INF_BD9 += 1
+        if ('주거시설' in category_name) or ('아파트' in place_name) or ('빌라' in place_name) or ('원룸' in place_name):
+            INF_RF0 += 1
+
     INF_ID.append(id_)
     INF_TOURIST.append(tourist)
     INF_ADDRESS.append(addr)
-    INF_MT1_list.append(INF_MT1)
-    INF_CS2_list.append(INF_CS2)
-    INF_PS3_list.append(INF_PS3)
-    INF_SC4_list.append(INF_SC4)
-    INF_AC5_list.append(INF_AC5)
-    INF_PK6_list.append(INF_PK6)
-    INF_OL7_list.append(INF_OL7)
-    INF_SW8_list.append(INF_SW8)
-    INF_BK9_list.append(INF_BK9)
-    INF_CT1_list.append(INF_CT1)
-    INF_AG2_list.append(INF_AG2)
-    INF_PO3_list.append(INF_PO3)
-    INF_AT4_list.append(INF_AT4)
-    INF_AD5_list.append(INF_AD5)
-    INF_FD6_list.append(INF_FD6)
-    INF_CE7_list.append(INF_CE7)
-    INF_HP8_list.append(INF_HP8)
-    INF_PM9_list.append(INF_PM9)
+    INF_CP1_list.append(INF_CP1)
+    INF_LF2_list.append(INF_LF2)
+    INF_SC3_list.append(INF_SC3)
+    INF_PK4_list.append(INF_PK4)
+    INF_SU5_list.append(INF_SU5)
+    INF_CT6_list.append(INF_CT6)
+    INF_AD7_list.append(INF_AD7)
+    INF_HC8_list.append(INF_HC8)
+    INF_BD9_list.append(INF_BD9)
+    INF_RF0_list.append(INF_RF0)
 
 df_new = pd.DataFrame(
     {
         "INF_ID": INF_ID,
         "INF_TOURIST": INF_TOURIST,
         "INF_ADDRESS": INF_ADDRESS,
-        "INF_MT1": INF_MT1_list,
-        "INF_CS2": INF_CS2_list,
-        "INF_PS3": INF_PS3_list,
-        "INF_SC4": INF_SC4_list,
-        "INF_AC5": INF_AC5_list,
-        "INF_PK6": INF_PK6_list,
-        "INF_OL7": INF_OL7_list,
-        "INF_SW8": INF_SW8_list,
-        "INF_BK9": INF_BK9_list,
-        "INF_CT1": INF_CT1_list,
-        "INF_AG2": INF_AG2_list,
-        "INF_PO3": INF_PO3_list,
-        "INF_AT4": INF_AT4_list,
-        "INF_AD5": INF_AD5_list,
-        "INF_FD6": INF_FD6_list,
-        "INF_CE7": INF_CE7_list,
-        "INF_HP8": INF_HP8_list,
-        "INF_PM9": INF_PM9_list
+        "INF_CP1": INF_CP1_list,
+        "INF_LF2": INF_LF2_list,
+        "INF_SC3": INF_SC3_list,
+        "INF_PK4": INF_PK4_list,
+        "INF_SU5": INF_SU5_list,
+        "INF_CT6": INF_CT6_list,
+        "INF_AD7": INF_AD7_list,
+        "INF_HC8": INF_HC8_list,
+        "INF_BD9": INF_BD9_list,
+        "INF_RF0": INF_RF0_list
     }
 )
 df_new.to_csv('Jeju_TB_INFRASTRUCTURE.csv', index=False)

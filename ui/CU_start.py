@@ -5,7 +5,8 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
 
 from CU_main import MainPage
-from Code.class_client import ClientApp
+# from Code.class_client import ClientApp
+from Code.class_test_client import ClientApp
 
 
 class StartPage(QWidget):

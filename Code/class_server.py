@@ -23,6 +23,8 @@ class Server:
     realty_data = "realty_data"
     year_data = "year_data"
     infra_data = "infra_data"
+    store_data = "store_data"
+    result_data = "result_data"
     pass_encoded = "pass"
     dot_encoded = "."
 
@@ -142,3 +144,18 @@ class Server:
             return_result = self.fixed_volume(response_header, response_data)
             self.send_message(client_socket, return_result)
 
+        elif request_header == self.store_data:
+            obj_ = self.decoder.binary_to_obj(request_data)
+            result_ = self.db_conn.search_addr(obj_, "average")
+            response_header = self.store_data
+            response_data = self.encoder.toJSON_as_binary(result_)
+            return_result = self.fixed_volume(response_header, response_data)
+            self.send_message(client_socket, return_result)
+
+        elif request_header == self.result_data:
+            obj_ = self.decoder.binary_to_obj(request_data)
+            result_ = self.db_conn.infra_scaler(obj_)
+            response_header = self.result_data
+            response_data = self.encoder.toJSON_as_binary(result_)
+            return_result = self.fixed_volume(response_header, response_data)
+            self.send_message(client_socket, return_result)

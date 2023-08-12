@@ -62,6 +62,9 @@ class ClientApp:
         data_msg = f"{data:<{self.BUFFER - self.HEADER_LENGTH}}".encode(self.FORMAT)
         self.client_socket.send(header_msg + data_msg)
 
+    def test(self):
+        print(1)
+
     def receive_message(self):
         """서버에서 정보 받아옴"""
         while True:

@@ -160,7 +160,7 @@ rest_api_key = "52756ac9cbee83797b5dd4e41ff78344"  # 여기서 개인적으로 �
 
 kakao = KakaoLocalAPI(rest_api_key)
 
-df = pd.read_csv('./boo_data/Jeju.csv', encoding='utf-8')
+df = pd.read_csv('./boo_data/Seoul.csv', encoding='utf-8')
 
 INF_id_list = list()
 INF_TOURIST_list = list()
@@ -170,7 +170,7 @@ INF_Y_list = list()
 
 for i in range(len(df)):
     # type_ = df.loc[i, '']
-    id_num = i+1571
+    id_num = i+0
     tourist = df.loc[i, '관광지명']
     addr = df.loc[i, '주소']
     result_01 = kakao.search_address(addr)

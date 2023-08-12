@@ -3,7 +3,7 @@
 import psycopg2 as pg
 from sqlalchemy import create_engine
 
-from db.class_RegionTourist import RegionTourist
+from db.class_Infra_scaler import InfraScaler
 from db.class_TouristInfo import TouristInfo
 from db.class_Realty import Realty
 from db.class_BusinessAverage import BusinessAverage
@@ -150,6 +150,18 @@ class DBConnector:
             return self.find_year_peple(tourist_name[0][1])
         elif set_ == "average":
             return self.find_store_average(tourist_name[0][1])
+
+    def infra_scaler(self, realty_id: Realty):
+        """부동산 아이디로 데이터 조회"""
+        id_ = realty_id.rea_id
+
+        info_list = self.read_db(2, "TB_INFRA_SCALER", "INF_ID", f"{id_}")
+        # ID
+
+        tourist_obj = InfraScaler(*info_list)
+
+        self.end_conn()
+        return tourist_obj
 
 
 if __name__ == '__main__':

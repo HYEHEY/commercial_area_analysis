@@ -1,13 +1,9 @@
 ## 주변 상권 정보 클래스 ##
 
-class Infrastructure:
+class InfraScaler:
     """주변 상권 정보"""
-    def __init__(self, inf_id, inf_tourist, inf_address,
-                 inf_cp1, inf_lf2, inf_sc3, inf_pk4, inf_su5, inf_ct6,
-                 inf_ad7, inf_hc8, inf_bd9, inf_rf0):
+    def __init__(self, inf_id, inf_cp1, inf_lf2, inf_sc3, inf_pk4, inf_su5, inf_ct6, inf_ad7, inf_hc8, inf_bd9, inf_rf0):
         self.inf_id = inf_id                # 부동산 ID
-        self.inf_tourist = inf_tourist      # 관광지명
-        self.inf_address = inf_address      # 부동산 주소
         self.inf_cp1 = inf_cp1              # 경쟁업체
         self.inf_lf2 = inf_lf2              # 여가시설
         self.inf_sc3 = inf_sc3              # 교육 및 교통 시설
@@ -27,10 +23,7 @@ class Infrastructure:
         return f"{self.__dict__}"
 
     def __eq__(self, other):
-        if isinstance(other, Infrastructure) and \
-                self.inf_id == other.inf_id and \
-                self.inf_tourist == other.inf_tourist and \
-                self.inf_address == other.inf_address and \
+        if isinstance(other, InfraScaler) and \
                 self.inf_cp1 == other.inf_cp1 and \
                 self.inf_lf2 == other.inf_lf2 and \
                 self.inf_sc3 == other.inf_sc3 and \

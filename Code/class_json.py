@@ -5,6 +5,7 @@ from db.class_Realty import Realty
 from db.class_RegionTourist import RegionTourist
 from db.class_TouristInfo import TouristInfo
 from db.class_YearTourist import YearTourist
+from db.class_Infra_scaler import InfraScaler
 
 
 class ObjEncoder(json.JSONEncoder):
@@ -74,8 +75,10 @@ class ObjDecoder(json.JSONDecoder):
         assert isinstance(dict_obj, dict)
         if "bus_id" in dict_obj.keys():
             return BusinessAverage(**dict_obj)
-        elif "inf_id" in dict_obj.keys():
+        elif "inf_tourist" in dict_obj.keys():
             return Infrastructure(**dict_obj)
+        elif "inf_id" in dict_obj.keys():
+            return InfraScaler(**dict_obj)
         elif "rea_id" in dict_obj.keys():
             return Realty(**dict_obj)
         elif "reg_id" in dict_obj.keys():
