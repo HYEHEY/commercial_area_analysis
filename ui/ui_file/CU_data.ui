@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 245);</string>
    </property>
    <widget class="QPushButton" name="back_btn">
     <property name="geometry">
@@ -62,9 +62,12 @@ border-radius: 10px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(101, 45, 142);
+     <string notr="true">QWidget#widget_2{
+border-color: rgb(101, 45, 142);
 border-style:solid;
 border-width:3px;
+background-color:rgb(255, 255, 255);
+}
 
 </string>
     </property>
@@ -72,7 +75,12 @@ border-width:3px;
      <item>
       <widget class="QWidget" name="widget_4" native="true">
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QWidget#widget_4{
+border-color: rgb(101, 45, 142);
+border-style:solid;
+border-width:3px;
+background-color:rgb(255, 255, 255);
+}</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -207,7 +215,7 @@ QPushButton:checked{
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>몰루</string>
+      <string>편의점</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -235,7 +243,7 @@ QPushButton:checked{
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>모올루</string>
+      <string>스코어링</string>
      </property>
      <property name="checkable">
       <bool>true</bool>

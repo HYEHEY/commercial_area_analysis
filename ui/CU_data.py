@@ -4,14 +4,16 @@ from PyQt5.QtCore import Qt, pyqtSignal
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.font_manager as fm
-import matplotlib.animation as animation
+import matplotlib.image as img
 import pandas as pd
 from Code.class_json import *
+from ui.CU_store_data import StoreData
 
 
 class DataPage(QDialog):
     year_data_signal = pyqtSignal(str)
     infra_data_signal = pyqtSignal(str)
+    store_data_signal = pyqtSignal(str)
 
     def __init__(self, clientapp, data_):
         super().__init__()
@@ -33,12 +35,15 @@ class DataPage(QDialog):
     def signal_event(self):
         """시그널 이벤트 함수"""
         self.year_data_signal.connect(self.show_population)
+        self.infra_data_signal.connect(self.show_infra)
+        self.store_data_signal.connect(self.show_store)
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
         self.back_btn.clicked.connect(lambda x: self.close())
         self.back_btn_2.clicked.connect(self.population_signal)
-        self.back_btn_3.clicked.connect(self.show_infra)
+        self.back_btn_3.clicked.connect(self.infra_signal)
+        self.back_btn_4.clicked.connect(self.store_signal)
 
     def create_population_plot(self, year_):
         """꺾은선 그래프 출력 함수"""
@@ -59,22 +64,58 @@ class DataPage(QDialog):
         plt.xlim((year_list[0]-1), (year_list[-1]+1))
         plt.xlabel('년도')
         plt.ylabel('관광객 수(명)')
-        plt.title("관광지 방문객 수 그래프")
+        plt.title("관광지 방문객 수")
         plt.xticks(range((year_list[0]), (year_list[-1]+1)))
 
-    def create_infra_plot(self):
-        """막대 그래프 출력 함수"""
-        labels = [2019, 2020, 2021, 2022]
-        ratio = [1, 2, 3, 4]
-        colors = ['#ff9999', '#ffc000', '#8fd9b6', '#d395d0']
+    def create_infra_plot(self, infra_):
+        """파이 그래프 출력 함수"""
+        infra_data = self.decoder.binary_to_obj(infra_)
+        infra_list = list()
+        store = infra_data.inf_cp1
+        infra_list.append(store)
+        life = infra_data.inf_lf2
+        infra_list.append(life)
+        sch_tra = infra_data.inf_sc3
+        infra_list.append(sch_tra)
+        parking = infra_data.inf_pk4
+        infra_list.append(parking)
+        commerce = infra_data.inf_su5
+        infra_list.append(commerce)
+        culture = infra_data.inf_ct6
+        infra_list.append(culture)
+        hotel = infra_data.inf_ad7
+        infra_list.append(hotel)
+        health = infra_data.inf_hc8
+        infra_list.append(health)
+        building = infra_data.inf_bd9
+        infra_list.append(building)
+        dwelling = infra_data.inf_rf0
+        infra_list.append(dwelling)
+
+        infra_num_list = list()
+        labels = list()
+        label = ['경쟁업체', '여가시설', '교육 및 교통시설', '주차시설', '상업시설', '관광 및 문화 시설',
+                 '숙박시설', '건강 및 종교시설', '빌딩', '주거시설']
+        for infra, label in zip(infra_list, label):
+            if infra != 0:
+                infra_num_list.append(infra)
+                labels.append(label)
+        ratio = infra_num_list
+        colors = ['#ff9999', '#ffc000', '#8fd9b6', '#d395d0', '#ffe4e1', '#faebd7', '#cbbeb5', '#f5f5dc', '#89a5ea',
+                  '#ff8e7f', '#a5ea89', '#929292', '#ffcb6b', '#800000', '#59227c', '#6ccad0', '#99cc66', '#ccffff']
         wedgeprops = {'width': 0.7, 'edgecolor': 'w', 'linewidth': 5}
 
-        plt.pie()
+        if len(infra_num_list) == 0:
+            img_ = img.imread('./ui_img/텅.png')
+            plt.imshow(img_)
+            plt.axis('off')
+        else:
+            plt.pie(ratio, autopct='%.1f%%', startangle=90, counterclock=False, colors=colors,
+                    wedgeprops=wedgeprops)
+            plt.legend(labels, loc='lower left', bbox_to_anchor=(0, 0.7))
+            plt.title("매물기준 반경 330m 주변 인프라", pad=20)
+            plt.axis('equal')
 
-        plt.xlabel('년도')
-        plt.ylabel('개수')
-        plt.title("막대 그래프")
-        plt.xticks(range(2019, 2023))
 
     def population_signal(self):
         """클라이언트로 인구 데이터 시그널 전송 함수"""
@@ -82,7 +123,11 @@ class DataPage(QDialog):
 
     def infra_signal(self):
         """클라이언트로 인프라 데이터 시그널 전송 함수"""
-        self.clientapp.send_realty_info_access(self.data)
+        self.clientapp.send_infra_data_access(self.data)
+
+    def store_signal(self):
+        """클라이언트로 편의점 월 매출 평균 데이터 시그널 전송 함수"""
+        self.clientapp.send_store_data_access(self.data)
 
     def show_population(self, year_):
         """유동인구 출력 함수"""
@@ -92,19 +137,33 @@ class DataPage(QDialog):
         self.verticalLayout.addWidget(canvas)
         self.create_population_plot(year_)
 
-    def show_infra(self):
+    def show_infra(self, infra_):
         """주변 인프라 출력 함수"""
         self.clear_layout(self.verticalLayout)
         canvas = FigureCanvas(plt.figure())
         self.verticalLayout.addWidget(canvas)
 
         # 샘플 차트 생성
-        self.create_infra_plot()  # 막대 그래프
+        self.create_infra_plot(infra_)  # 파이 그래프
+
+    def show_store(self, store_):
+        """편의점 매출 출력 함수"""
+        self.clear_layout(self.verticalLayout)
+        store_data = self.decoder.binary_to_obj(store_)
+        data_list = []
+        num = store_data.bus_business_num
+        data_list.append(num)
+        sales = store_data.bus_sales
+        data_list.append(sales)
+        sales_num = store_data.bus_sales_num
+        data_list.append(sales_num)
+        canvas = StoreData(data_list)
+        self.verticalLayout.addWidget(canvas)
 
     def window_option(self):
         """프로그램 실행시 첫 화면 옵션 설정 함수"""
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-        self.move(590, 241)
+        self.move(600, 241)
         self.back_btn_2.setChecked(True)
 
     def clear_layout(self, layout: QLayout):

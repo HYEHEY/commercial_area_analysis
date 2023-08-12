@@ -17,7 +17,7 @@ class ClientApp:
     HOST = '10.10.20.115'
     # HOST = '127.0.0.1'
     PORT = 9999
-    BUFFER = 50000
+    BUFFER = 100000
     FORMAT = "utf-8"
     HEADER_LENGTH = 30
 
@@ -26,6 +26,7 @@ class ClientApp:
     realty_data = "realty_data"  # 데이터 시각화 하기위한 헤더
     year_data = "year_data"
     infra_data = "infra_data"
+    store_data = "store_data"
 
     def __init__(self):
         self.user_id = None
@@ -54,6 +55,18 @@ class ClientApp:
         data_msg = realty_data
         data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.realty_data
+        self.fixed_volume(header_data, data_msg_str)
+
+    def send_infra_data_access(self, realty_data):
+        data_msg = realty_data
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
+        header_data = self.infra_data
+        self.fixed_volume(header_data, data_msg_str)
+
+    def send_store_data_access(self, realty_data):
+        data_msg = realty_data
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
+        header_data = self.store_data
         self.fixed_volume(header_data, data_msg_str)
 
     def fixed_volume(self, header, data):
@@ -87,4 +100,8 @@ class ClientApp:
             # 인프라 데이터 정보
             if response_header == self.infra_data:
                 self.client_widget.infra_data_signal.emit(response_data)
+
+            # 편의점 데이터 정보
+            if response_header == self.store_data:
+                self.client_widget.store_data_signal.emit(response_data)
 
