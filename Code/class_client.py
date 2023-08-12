@@ -27,6 +27,7 @@ class ClientApp:
     year_data = "year_data"
     infra_data = "infra_data"
     store_data = "store_data"
+    result_data = "result_data"
 
     def __init__(self):
         self.user_id = None
@@ -69,6 +70,12 @@ class ClientApp:
         header_data = self.store_data
         self.fixed_volume(header_data, data_msg_str)
 
+    def send_result_data_access(self, realty_data):
+        data_msg = realty_data
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
+        header_data = self.result_data
+        self.fixed_volume(header_data, data_msg_str)
+
     def fixed_volume(self, header, data):
         """데이터 길이 맞춰서 서버로 전송"""
         header_msg = f"{header:<{self.HEADER_LENGTH}}".encode(self.FORMAT)
@@ -104,4 +111,8 @@ class ClientApp:
             # 편의점 데이터 정보
             if response_header == self.store_data:
                 self.client_widget.store_data_signal.emit(response_data)
+
+            # 결과값 데이터 정보
+            if response_header == self.result_data:
+                self.client_widget.result_data_signal.emit(response_data)
 

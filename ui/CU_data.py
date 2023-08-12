@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QDialog, QLayout
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt, pyqtSignal
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.font_manager as fm
 import matplotlib.image as img
@@ -10,10 +11,12 @@ from Code.class_json import *
 from ui.CU_store_data import StoreData
 
 
+
 class DataPage(QDialog):
     year_data_signal = pyqtSignal(str)
     infra_data_signal = pyqtSignal(str)
     store_data_signal = pyqtSignal(str)
+    result_data_signal = pyqtSignal(str)
 
     def __init__(self, clientapp, data_):
         super().__init__()
@@ -37,6 +40,7 @@ class DataPage(QDialog):
         self.year_data_signal.connect(self.show_population)
         self.infra_data_signal.connect(self.show_infra)
         self.store_data_signal.connect(self.show_store)
+        self.result_data_signal.connect(self.show_result)
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
@@ -44,6 +48,7 @@ class DataPage(QDialog):
         self.back_btn_2.clicked.connect(self.population_signal)
         self.back_btn_3.clicked.connect(self.infra_signal)
         self.back_btn_4.clicked.connect(self.store_signal)
+        self.back_btn_5.clicked.connect(self.result_signal)
 
     def create_population_plot(self, year_):
         """꺾은선 그래프 출력 함수"""
@@ -55,13 +60,17 @@ class DataPage(QDialog):
             years = year.yea_year
             year_list.append(years)
             year_tourist = year.yea_tourist
-            year_personnel = year.yea_personnel
+            if year.yea_personnel > 10000:
+                year_personnel = year.yea_personnel/10000
+            else:
+                year_personnel = 0
             year_personnel_list.append(year_personnel)
 
         df1 = pd.DataFrame({'x': year_list, 'y': year_personnel_list})
         plt.plot(df1['x'], df1['y'], color='blue', alpha=0.4, linestyle='-', marker='*')
 
         plt.xlim((year_list[0]-1), (year_list[-1]+1))
+        plt.gca().yaxis.set_major_formatter(mticker.FormatStrFormatter(f'%i만'))
         plt.xlabel('년도')
         plt.ylabel('관광객 수(명)')
         plt.title("관광지 방문객 수")
@@ -112,7 +121,7 @@ class DataPage(QDialog):
         else:
             plt.pie(ratio, autopct='%.1f%%', startangle=90, counterclock=False, colors=colors,
                     wedgeprops=wedgeprops)
-            plt.legend(labels, loc='lower left', bbox_to_anchor=(0, 0.7))
+            plt.legend(labels, loc='center left', bbox_to_anchor=(0, 0.7))
             plt.title("매물기준 반경 330m 주변 인프라", pad=20)
             plt.axis('equal')
 
@@ -128,6 +137,10 @@ class DataPage(QDialog):
     def store_signal(self):
         """클라이언트로 편의점 월 매출 평균 데이터 시그널 전송 함수"""
         self.clientapp.send_store_data_access(self.data)
+
+    def result_signal(self):
+        """클라이언트로 결과값 시그널 전송 함수"""
+        self.clientapp.send_result_data_access(self.data)
 
     def show_population(self, year_):
         """유동인구 출력 함수"""
@@ -151,13 +164,46 @@ class DataPage(QDialog):
         self.clear_layout(self.verticalLayout)
         store_data = self.decoder.binary_to_obj(store_)
         data_list = []
-        num = store_data.bus_business_num
-        data_list.append(num)
+        self.num = store_data.bus_business_num
+        data_list.append(self.num)
         sales = store_data.bus_sales
         data_list.append(sales)
         sales_num = store_data.bus_sales_num
         data_list.append(sales_num)
-        canvas = StoreData(data_list)
+        canvas = StoreData(data_list, 1)
+        self.verticalLayout.addWidget(canvas)
+
+    def show_result(self, result_):
+        """입지 결과 출력 함수"""
+        self.clear_layout(self.verticalLayout)
+        result_data = self.decoder.binary_to_obj(result_)
+        cp1 = result_data.inf_cp1
+        lf2 = result_data.inf_lf2
+        sc3 = result_data.inf_sc3
+        pk4 = result_data.inf_pk4
+        su5 = result_data.inf_su5
+        ct6 = result_data.inf_ct6
+        ad7 = result_data.inf_ad7
+        hc8 = result_data.inf_hc8
+        bd9 = result_data.inf_bd9
+        rf0 = result_data.inf_rf0
+        data_list = []
+        # 점수 계산
+        total_score = 50 + (lf2 * 16) + (sc3 * 14) + (pk4 * 4) + (su5 * 6) + (ct6 * 18) + (ad7 * 20) + (hc8 * 4) + (bd9 * 10) + (rf0 * 8) - (cp1 * 4 + self.num)
+        data_list.append(int(total_score))
+        print(total_score)
+        # 예측 창업 비용
+        if self.data.rea_realty_ctg == '월세':
+            total_low_cash = self.data.reg_deposit + 2200 + 3600
+            total_high_cash = self.data.reg_deposit + 2200 + 5000
+        elif self.data.rea_realty_ctg == '매매':
+            total_low_cash = self.data.reg_selling_price + 2200 + 3600
+            total_high_cash = self.data.reg_selling_price + 2200 + 5000
+        data_list.append(total_low_cash)
+        data_list.append(total_high_cash)
+        print(total_low_cash)
+        print(total_high_cash)
+        canvas = StoreData(data_list, 2)
         self.verticalLayout.addWidget(canvas)
 
     def window_option(self):
@@ -165,6 +211,8 @@ class DataPage(QDialog):
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         self.move(600, 241)
         self.back_btn_2.setChecked(True)
+        self.label.setText(self.data.rea_rourist)
+
 
     def clear_layout(self, layout: QLayout):
         """레이아웃 안의 모든 객체를 지웁니다."""

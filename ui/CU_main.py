@@ -21,7 +21,6 @@ class MainPage(QWidget):
     def __init__(self, clientapp):
         super().__init__()
         loadUi('./ui_file/CU_main.ui', self)
-
         self.window_option()
         self.clientapp = clientapp
         self.clientapp.set_widget(self)
@@ -31,9 +30,6 @@ class MainPage(QWidget):
         self.signal_event()
         self.encoder = ObjEncoder()
         self.decoder = ObjDecoder()
-
-
-
 
     def kakao_map(self):
         """카카오 맵 API 출력 이벤트 함수"""
